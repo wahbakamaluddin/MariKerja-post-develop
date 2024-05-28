@@ -1,7 +1,11 @@
-import React from 'react'
+import React from "react";
 
 export default function Home() {
   return (
-    <div>Home</div>
-  )
+    <div>
+      <div>
+        <h1>List of jobs</h1>
+      </div>
+    </div>
+  );
 }
