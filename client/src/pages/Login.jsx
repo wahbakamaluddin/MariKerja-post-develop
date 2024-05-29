@@ -55,6 +55,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -80,12 +81,10 @@ export default function Login() {
   };
 
   return (
-    <div className="container flex sm:flex">
+    <div className="flex justify-center items-center min-h-screen ">
       <form onSubmit={loginUser}>
         <div className="flex flex-col">
-          <h2 className="title-font sm:text-4xl text-3xl mb-4 font-small text-black">
-            MariKerja
-          </h2>
+          <Header />
         </div>
         <div className="relative mb-4">
           <input

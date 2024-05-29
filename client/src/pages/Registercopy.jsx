@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 export default function Registercopy() {
   const navigate = useNavigate();
@@ -55,12 +56,10 @@ export default function Registercopy() {
   };
 
   return (
-    <div>
+    <div className="flex justify-center items-center min-h-screen">
       <form onSubmit={registerUser}>
       <div className="flex flex-col">
-        <h2 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-black">
-          MariKerja
-        </h2>
+        <Header />
       </div>
       <div className="flex gap-4 mb-4">
         <div className="w-1/2">
