@@ -33,7 +33,7 @@ export default function Register() {
   };
 
   return (
-    <div>
+    <div className="flex justify-center items-center min-h-screen ">
       <form onSubmit={registerUser}>
         <div className="flex flex-col">
           <h2 className="title-font sm:text-4xl text-3xl mb-4 font-small text-black">
@@ -41,7 +41,7 @@ export default function Register() {
           </h2>
         </div>
         <div className="relative mb-4">
-          <h2 className="title-font sm:text-2xl text-3xl mb-4 font-small text-black">
+          <h2 className="title-font sm:text-1 text-3xl mb-4 font-small text-black">
             Create a new account
           </h2>
         </div>
