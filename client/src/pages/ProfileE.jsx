@@ -25,7 +25,7 @@ export default function ProfileE() {
     <div className="flex h-screen bg-white">
       {/* Sidebar */}
       <div className={showSidebar ? "relative w-64 flex-shrink-0 border-r-2 border-black-950" : "hidden"}>
-        <div className="absolute inset-y-0 left-0 bg-white text-black w-64">
+        <div className="h-full relative w-64 flex-shrink-0 border-r-2 border-black-950">
           <div className="p-4">
             <h1 className="text-2xl font-bold text-center">MariKerja</h1>
             <ul className="mt-4">
