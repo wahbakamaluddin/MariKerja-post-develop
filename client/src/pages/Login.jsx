@@ -116,7 +116,7 @@ export default function Login() {
         </div>
         <div className="relative mb-4">
           <a
-            href="/register"
+            href="/registercopy"
             className="w-full inline-flex justify-center text-white bg-gray-300 border-0 py-2 px-6 focus:outline-none hover:bg-gray-800 hover:text-white rounded text-lg"
           >
             Create new account
