@@ -2,6 +2,7 @@ const User = require("../models/user");
 const { hashPassword, comparePassword } = require("../helpers/auth");
 const jwt = require("jsonwebtoken");
 
+// Test endpoint
 const test = (req, res) => {
   res.json("test is working");
 };
@@ -9,20 +10,29 @@ const test = (req, res) => {
 // Register endpoint
 const registerUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const {
+      firstname,
+      lastname,
+      email,
+      password,
+      dateOfBirth: { day, month, year },
+      gender,
+      role,
+    } = req.body;
     // Check if name was entered
-    if (!name) {
+    if (!firstname || !lastname) {
       return res.json({
-        error: "name is reuquired",
+        error: "First name and last name are required",
       });
     }
-    // Check is password is good
+    // Check if password is valid
     if (!password || password.length < 6) {
       return res.json({
         error: "Password is required and it must be at least 6 characters",
       });
     }
-    // Check email
+
+    // Check if email is valid
     const exist = await User.findOne({ email });
     if (exist) {
       return res.json({
@@ -30,14 +40,19 @@ const registerUser = async (req, res) => {
       });
     }
 
+    // Hash password
     const hashedPassword = await hashPassword(password);
+
     // Create user in database
     const user = await User.create({
-      name,
+      firstname,
+      lastname,
       email,
       password: hashedPassword,
+      dateOfBirth: { day, month, year },
+      gender,
+      role,
     });
-
     return res.json(user);
   } catch (error) {
     console.log(error);
@@ -80,7 +95,9 @@ const loginUser = async (req, res) => {
   }
 };
 
+// Get profile endpoint
 const getProfile = (req, res) => {
+  // Get token from cookies
   const { token } = req.cookies;
   if (token) {
     jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
@@ -92,6 +109,7 @@ const getProfile = (req, res) => {
   }
 };
 
+// Export functions
 module.exports = {
   test,
   registerUser,
