@@ -13,8 +13,9 @@ import ProfileE from "./pages/ProfileE";
 import ProfileJS from "./pages/ProfileJS";
 import ActivityJS from "./pages/ActivityJS";
 import ActivityE from "./pages/ActivityE";
+import PostJob from "./pages/PostJob";
+import EditProfile from "./pages/EditProfile";
 //unfinished
-// import Dashboard from "./pages/Dashboard";
 // import Dashboard from "./pages/Dashboard";
 // import Dashboard from "./pages/Dashboard";
 
@@ -43,6 +44,8 @@ function App() {
         <Route path="/profilejs" element={<ProfileJS />} />
         <Route path="/activityjs" element={<ActivityJS />} />
         <Route path="/activitye" element={<ActivityE />} />
+        <Route path="/postjob" element={<PostJob />} />
+        <Route path="/editprofile" element={<EditProfile />} />
       </Routes>
     </UserContextProvider>
 
