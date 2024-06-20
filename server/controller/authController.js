@@ -40,6 +40,10 @@ const registerUser = async (req, res) => {
       });
     }
 
+    if (!email) {
+      return res.status(400).json({ msg: "Email is required" });
+    }
+
     // Hash password
     const hashedPassword = await hashPassword(password);
 
@@ -53,6 +57,28 @@ const registerUser = async (req, res) => {
       gender,
       role,
     });
+
+    // Initialize the profile based on the user's role
+    if (role === "job-seeker") {
+      user.profile = {
+        resume: {
+          skills: [],
+          contactNumber: "",
+          address: "",
+        },
+      };
+    } else if (role === "employer") {
+      user.profile = {
+        company: {
+          name: "",
+          description: "",
+          address: "",
+          requirements: [],
+          aboutCompany: "",
+        },
+      };
+    }
+
     return res.json(user);
   } catch (error) {
     console.log(error);
