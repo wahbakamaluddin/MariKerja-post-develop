@@ -9,7 +9,6 @@ import Register from "./pages/Register";
 import Registercopy from "./pages/Registercopy";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import ProfileE from "./pages/ProfileE";
 import ProfileJS from "./pages/ProfileJS";
 import ActivityJS from "./pages/ActivityJS";
 import ActivityE from "./pages/ActivityE";
@@ -41,7 +40,6 @@ function App() {
         <Route path="/registercopy" element={<Registercopy />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profilee" element={<ProfileE />} />
         <Route path="/profilejs" element={<ProfileJS />} />
         <Route path="/activityjs" element={<ActivityJS />} />
