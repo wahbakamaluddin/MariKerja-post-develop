@@ -17,6 +17,10 @@ import PostJob from "./pages/PostJob";
 import EditProfile from "./pages/EditProfile";
 import JobDescription from "./pages/JobDescription";
 import Hiring1 from "./pages/Hiring1";
+import Hiring2 from "./pages/Hiring2";
+import EditResume from "./pages/EditResume";
+import EditCompanyInfo from "./pages/EditCompanyInfo";
+import CompanyInfo from "./pages/CompanyInfo";
 //unfinished
 // import Dashboard from "./pages/Dashboard";
 // import Dashboard from "./pages/Dashboard";
@@ -50,6 +54,10 @@ function App() {
         <Route path="/editprofile" element={<EditProfile />} />
         <Route path="/jobdescription" element={<JobDescription />} />
         <Route path="/hiring1" element={<Hiring1 />} />
+        <Route path="/hiring2" element={<Hiring2 />} />
+        <Route path="/editresume" element={<EditResume />} />
+        <Route path="/editcompanyinfo" element={<EditCompanyInfo />} />
+        <Route path="/companyinfo" element={<CompanyInfo />} />
       </Routes>
     </UserContextProvider>
 

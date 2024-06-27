@@ -109,7 +109,7 @@ export default function Login() {
         <div className="relative mb-4">
           <button
             type="submit"
-            className="font-inter w-full text-white bg-black border-0 py-2 px-6 rounded text-lg"
+            className="font-inter w-full text-white bg-black border-0 py-2 px-4 rounded text-lg"
           >
             Login
           </button>
