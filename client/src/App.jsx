@@ -15,6 +15,8 @@ import ActivityJS from "./pages/ActivityJS";
 import ActivityE from "./pages/ActivityE";
 import PostJob from "./pages/PostJob";
 import EditProfile from "./pages/EditProfile";
+import JobDescription from "./pages/JobDescription";
+import Hiring1 from "./pages/Hiring1";
 //unfinished
 // import Dashboard from "./pages/Dashboard";
 // import Dashboard from "./pages/Dashboard";
@@ -46,6 +48,8 @@ function App() {
         <Route path="/activitye" element={<ActivityE />} />
         <Route path="/postjob" element={<PostJob />} />
         <Route path="/editprofile" element={<EditProfile />} />
+        <Route path="/jobdescription" element={<JobDescription />} />
+        <Route path="/hiring1" element={<Hiring1 />} />
       </Routes>
     </UserContextProvider>
 
