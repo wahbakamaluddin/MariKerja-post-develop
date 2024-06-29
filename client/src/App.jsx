@@ -6,7 +6,6 @@ import TopNav from "./components/TopNav";
 //pages
 import Home from "./pages/Home";
 import Register from "./pages/Register";
-import Registercopy from "./pages/Registercopy";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import ProfileE from "./pages/ProfileE";
@@ -42,7 +41,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/registercopy" element={<Registercopy />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
