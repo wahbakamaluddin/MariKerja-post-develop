@@ -73,5 +73,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Toaster position="bottom-right" toastOptions={{ duration: 2000 }} />
       <RouterProvider router={router} />
     </UserContextProvider>
+import App from "./App.jsx";
+import "./index.css";
+import { BrowserRouter as Router } from "react-router-dom";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <Router>
+      <App />
+    </Router>
   </React.StrictMode>
 );
