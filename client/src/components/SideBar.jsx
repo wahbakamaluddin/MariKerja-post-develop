@@ -14,7 +14,8 @@ export function Sidebar({ showSidebar }) {
           <h1 className="text-2xl font-bold text-center">MariKerja</h1>
           <ul className="mt-4">
             <li className="py-2 flex items-center">
-              <a
+              <Link
+                to
                 href="/home"
                 className="container max-width flex items-center gap-3 px-4 py-2 hover:bg-gray-400"
               >
@@ -34,11 +35,11 @@ export function Sidebar({ showSidebar }) {
                   <polyline points="9 22 9 12 15 12 15 22"></polyline>
                 </svg>
                 Home
-              </a>
+              </Link>
             </li>
             <li className="py-2 flex items-center">
-              <a
-                href="/profile"
+              <Link
+                to="/profile"
                 className="container max-width flex items-center gap-3 px-4 py-2 hover:bg-gray-400"
               >
                 <svg
@@ -57,10 +58,11 @@ export function Sidebar({ showSidebar }) {
                   <circle cx="12" cy="7" r="4"></circle>
                 </svg>
                 Profile
-              </a>
+              </Link>
             </li>
             <li className="py-2 flex items-center">
-              <a
+              <Link
+                to
                 href="/activity"
                 className="container max-width flex items-center gap-3 px-4 py-2 hover:bg-gray-400"
               >
@@ -79,10 +81,11 @@ export function Sidebar({ showSidebar }) {
                   <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
                 </svg>
                 Activity
-              </a>
+              </Link>
             </li>
             <li className="py-2 flex items-center">
-              <a
+              <Link
+                to
                 href="login"
                 className="container max-width flex items-center gap-3 px-4 py-2 hover:bg-gray-400"
               >
@@ -103,7 +106,7 @@ export function Sidebar({ showSidebar }) {
                   <line x1="21" y1="12" x2="9" y2="12"></line>
                 </svg>
                 Log out
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

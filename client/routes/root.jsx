@@ -1,15 +1,16 @@
 import { Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Root() {
   return (
-    <div className="flex">
+    <div className="flex h-full">
       <div className="h-full relative w-64 flex-shrink-0 border-r-2 border-black-950">
         <div className="p-4">
           <h1 className="text-2xl font-bold text-center">MariKerja</h1>
           <ul className="mt-4">
             <li className="py-2 flex items-center">
-              <a
-                href="/home"
+              <Link
+                to="/home"
                 className="container max-width flex items-center gap-3 px-4 py-2 hover:bg-gray-400"
               >
                 <svg
@@ -28,11 +29,11 @@ export default function Root() {
                   <polyline points="9 22 9 12 15 12 15 22"></polyline>
                 </svg>
                 Home
-              </a>
+              </Link>
             </li>
             <li className="py-2 flex items-center">
-              <a
-                href="/profilee"
+              <Link
+                to="/profile"
                 className="container max-width flex items-center gap-3 px-4 py-2 hover:bg-gray-400"
               >
                 <svg
@@ -51,11 +52,11 @@ export default function Root() {
                   <circle cx="12" cy="7" r="4"></circle>
                 </svg>
                 Profile
-              </a>
+              </Link>
             </li>
             <li className="py-2 flex items-center">
-              <a
-                href="/activity"
+              <Link
+                to="/activity"
                 className="container max-width flex items-center gap-3 px-4 py-2 hover:bg-gray-400"
               >
                 <svg
@@ -73,11 +74,11 @@ export default function Root() {
                   <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
                 </svg>
                 Activity
-              </a>
+              </Link>
             </li>
             <li className="py-2 flex items-center">
-              <a
-                href="login"
+              <Link
+                to="login"
                 className="container max-width flex items-center gap-3 px-4 py-2 hover:bg-gray-400"
               >
                 <svg
@@ -97,15 +98,14 @@ export default function Root() {
                   <line x1="21" y1="12" x2="9" y2="12"></line>
                 </svg>
                 Log out
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
       </div>
-      <div className="h-full relative w-64 flex-shrink-0 border-r-2 border-black-950">
+      <div className="flex-grow">
         <Outlet />
       </div>
     </div>
   );
 }
-

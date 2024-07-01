@@ -1,10 +1,9 @@
-export default function ProfileJS() {
+export default function Profile() {
   return (
     <div className="flex h-screen bg-white">
       {/* Content */}
       <div>
         {/* Sticky Navigation Bar */}
-        <TopNav title="Profile" />
         {/* User Information */}
         <div className="flex-1 p-8 text-left  ">
           <div className="mb-10 mt-10">

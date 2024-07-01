@@ -1,36 +1,39 @@
 export default function Activity() {
   return (
     <div className="flex h-screen bg-white">
+      {/* Content */}
       <div>
+        {/* Sticky Navigation Bar */}
         {/* User Information */}
         <div className="flex-1 p-8">
           <div className=" mt-10">
             {/* Search and Filter */}
             <h2 className="flex text-2xl font-bold text-left mb-4">
-              Posted Job
+              Applied Job
             </h2>
+
             {/* Table */}
             <table className="table-auto text-left w-full">
               <thead>
                 <tr>
-                  <th className="px-4 py-2">No</th>
-                  <th className="px-4 py-2">Title</th>
-                  <th className="px-4 py-2">Place</th>
-                  <th className="px-4 py-2">Type</th>
-                  <th className="px-4 py-2">Applicant(s)</th>
-                  <th className="px-4 py-2"> </th>
+                  <th className="px-6 py-2">No</th>
+                  <th className="px-6 py-2">Title</th>
+                  <th className="px-6 py-2">Place</th>
+                  <th className="px-6 py-2">Company Name</th>
+                  <th className="px-6 py-2">Status</th>
+                  <th className="px-6 py-2"> </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border px-4 py-2">1</td>
-                  <td className="border px-4 py-2">Job 1</td>
-                  <td className="border px-4 py-2">Nilai, Negeri Sembilan</td>
-                  <td className="border px-4 py-2">Part time </td>
-                  <td className="border px-4 py-2">2</td>
-                  <td className="border px-4 py-2">
+                  <td className="border px-6 py-2">1</td>
+                  <td className="border px-6 py-2">Job 1</td>
+                  <td className="border px-6 py-2">Nilai, Negeri Sembilan</td>
+                  <td className="border px-6 py-2">Lazada </td>
+                  <td className="border px-6 py-2">Accepted</td>
+                  <td className="border px-6 py-2">
                     <button
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0.5 px-2 rounded"
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                       onClick={() => {
                         /* your action here */
                       }}
@@ -40,14 +43,14 @@ export default function Activity() {
                   </td>
                 </tr>
                 <tr>
-                  <td className="border px-4 py-2">2</td>
-                  <td className="border px-4 py-2">Job 2</td>
-                  <td className="border px-4 py-2">Nilai, Negeri Sembilan</td>
-                  <td className="border px-4 py-2">Full time </td>
-                  <td className="border px-4 py-2">3</td>
-                  <td className="border px-4 py-2">
+                  <td className="border px-6 py-2">2</td>
+                  <td className="border px-6 py-2">Job 2</td>
+                  <td className="border px-6 py-2">Nilai, Negeri Sembilan</td>
+                  <td className="border px-6 py-2">Lazada </td>
+                  <td className="border px-6 py-2">Pending</td>
+                  <td className="border px-6 py-2">
                     <button
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0.5 px-2 rounded "
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                       onClick={() => {
                         /* your action here */
                       }}
@@ -59,12 +62,6 @@ export default function Activity() {
                 {/* Add more rows as needed */}
               </tbody>
             </table>
-            <button
-              className="flex justify-start mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-              onClick={() => (window.location.href = "/postjob")}
-            >
-              Post a job
-            </button>
           </div>
         </div>
       </div>
