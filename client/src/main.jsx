@@ -1,9 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Root from "/routes/root.jsx";
-import Home from "/routes/home.jsx";
-import Profile from "/routes/profile.jsx";
-import Activity from "/routes/activity.jsx";
+import Root from "/routes/Root.jsx";
+import Home from "/routes/Home.jsx";
+import Profile from "/routes/Profile.jsx";
+import Activity from "/routes/Activity.jsx";
+import Login from "/routes/Login.jsx";
+import Register from "/routes/Register.jsx";
 import "./index.css";
 import {
   BrowserRouter as Router,
@@ -12,8 +14,13 @@ import {
 } from "react-router-dom";
 
 const router = createBrowserRouter([
-  { path: "login", element: <Login /> },
-  { path: "register", element: <Register /> },
+  {
+    path: "auth",
+    children: [
+      { path: "login", element: <Login /> },
+      { path: "register", element: <Register /> },
+    ],
+  },
   {
     path: "/",
     element: <Root />,
