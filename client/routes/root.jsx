@@ -55,7 +55,7 @@ export default function Root() {
             </li>
             <li className="py-2 flex items-center">
               <a
-                href="/activitye"
+                href="/activity"
                 className="container max-width flex items-center gap-3 px-4 py-2 hover:bg-gray-400"
               >
                 <svg
@@ -109,55 +109,3 @@ export default function Root() {
   );
 }
 
-// import { Outlet } from "react-router-dom";
-
-// export default function Root() {
-//   return (
-//     <div className="flex">
-//       <div className="h-full relative w-64 flex-shrink-0 border-r-2 border-black-950">
-//         <div className="p-4">
-//           <h1 className="text-2xl font-bold text-center">MariKerja</h1>
-//           <ul className="mt-4">
-//             <li className="py-2 flex items-center">
-//               <a
-//                 href="/home"
-//                 className="flex items-center gap-3 px-4 py-2 hover:bg-gray-400"
-//               >
-//                 <svg
-//                   xmlns="http://www.w3.org/2000/svg"
-//                   className="h-6 w-6" // Adjusted for Tailwind's sizing
-//                   fill="none"
-//                   viewBox="0 0 24 24"
-//                   stroke="currentColor"
-//                 >
-//                   <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-//                   <polyline points="9 22 9 12 15 12 15 22"></polyline>
-//                 </svg>
-//                 Home
-//               </a>
-//             </li>
-//             <li className="py-2 flex items-center">
-//               <a
-//                 href="/profile"
-//                 className="flex items-center gap-3 px-4 py-2 hover:bg-gray-400"
-//               >
-//                 <svg
-//                   xmlns="http://www.w3.org/2000/svg"
-//                   className="h-6 w-6" // Adjusted for Tailwind's sizing
-//                   fill="none"
-//                   viewBox="0 0 24 24"
-//                   stroke="currentColor"
-//                 >
-//                   {/* SVG content */}
-//                 </svg>
-//                 Profile
-//               </a>
-//             </li>
-//             {/* Additional list items */}
-//           </ul>
-//         </div>
-//       </div>
-//       <Outlet />
-//     </div>
-//   );
-// }

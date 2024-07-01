@@ -1,7 +1,7 @@
 export default function Activity() {
   return (
     <div className="flex h-screen bg-white">
-      <div className={`flex-1 ${showSidebar ? "pl-64" : ""}`}>
+      <div>
         {/* User Information */}
         <div className="flex-1 p-8">
           <div className=" mt-10">

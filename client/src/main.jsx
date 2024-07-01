@@ -4,7 +4,6 @@ import Root from "/routes/root.jsx";
 import Home from "/routes/home.jsx";
 import Profile from "/routes/profile.jsx";
 import Activity from "/routes/activity.jsx";
-import App from "./App.jsx";
 import "./index.css";
 import {
   BrowserRouter as Router,
@@ -24,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/activity",
         element: <Activity />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
     ],
   },

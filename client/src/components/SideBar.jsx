@@ -2,13 +2,22 @@ import { useState, useEffect } from "react";
 
 export function Sidebar({ showSidebar }) {
   return (
-    <div className={showSidebar ? "fixed top-0 left-0 h-full w-64 flex-shrink-0 border-r-2 border-black-950" : "hidden"}>
+    <div
+      className={
+        showSidebar
+          ? "fixed top-0 left-0 h-full w-64 flex-shrink-0 border-r-2 border-black-950"
+          : "hidden"
+      }
+    >
       <div className="h-full relative w-64 flex-shrink-0 border-r-2 border-black-950">
         <div className="p-4">
           <h1 className="text-2xl font-bold text-center">MariKerja</h1>
           <ul className="mt-4">
             <li className="py-2 flex items-center">
-              <a href="/home" className="container max-width flex items-center gap-3 px-4 py-2 hover:bg-gray-400">
+              <a
+                href="/home"
+                className="container max-width flex items-center gap-3 px-4 py-2 hover:bg-gray-400"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -28,7 +37,10 @@ export function Sidebar({ showSidebar }) {
               </a>
             </li>
             <li className="py-2 flex items-center">
-              <a href="/profilee" className="container max-width flex items-center gap-3 px-4 py-2 hover:bg-gray-400">
+              <a
+                href="/profile"
+                className="container max-width flex items-center gap-3 px-4 py-2 hover:bg-gray-400"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -48,7 +60,10 @@ export function Sidebar({ showSidebar }) {
               </a>
             </li>
             <li className="py-2 flex items-center">
-              <a href="/activitye" className="container max-width flex items-center gap-3 px-4 py-2 hover:bg-gray-400">
+              <a
+                href="/activity"
+                className="container max-width flex items-center gap-3 px-4 py-2 hover:bg-gray-400"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -67,7 +82,10 @@ export function Sidebar({ showSidebar }) {
               </a>
             </li>
             <li className="py-2 flex items-center">
-              <a href="login" className="container max-width flex items-center gap-3 px-4 py-2 hover:bg-gray-400">
+              <a
+                href="login"
+                className="container max-width flex items-center gap-3 px-4 py-2 hover:bg-gray-400"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
