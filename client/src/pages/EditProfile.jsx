@@ -52,7 +52,7 @@ export default function ProfileE() {
                 <input
                   type="email"
                   className="w-1/2 block bg-white rounded border border-gray-700 focus:border-black focus:ring-2 focus:ring-black-900 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                  placeholder="placeholder@domain.com"
+                  placeholder="user@domain.com"
                 />
               </div>
               <div className="w-full flex gap-2 justify-start mb-4">
