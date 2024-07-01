@@ -7,6 +7,13 @@ import Activity from "/routes/Activity.jsx";
 import Login from "/routes/Login.jsx";
 import Register from "/routes/Register.jsx";
 import "./index.css";
+import axios from "axios";
+import { Toaster } from "react-hot-toast";
+import { UserContextProvider } from "../context/userContext";
+
+axios.defaults.baseURL = "http://localhost:9000";
+axios.defaults.withCredentials = true;
+
 import {
   BrowserRouter as Router,
   RouterProvider,

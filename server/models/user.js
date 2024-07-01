@@ -114,6 +114,10 @@ const userSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
+  password: {
+    type: String,
+    required: true,
+  },
   profile: {
     type: Schema.Types.Mixed,
   },
