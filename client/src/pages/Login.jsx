@@ -21,8 +21,8 @@ export default function Login() {
       if (data.error) {
         toast.error(data.error);
       } else {
-        setData({});
-        navigate("/dashboard");
+        setData({ email: "", password: "" });
+        navigate("/home");
       }
     } catch (error) {}
   };
