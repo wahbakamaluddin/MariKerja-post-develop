@@ -1,24 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import ReactDOM from "react-dom/client";
-import Root from "/routes/Root.jsx";
-import Home from "/routes/Home.jsx";
-import Profile from "/routes/Profile.jsx";
-import Activity from "/routes/Activity.jsx";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import RootJS from "/routes/RootJS.jsx";
+import RootE from "/routes/RootE.jsx";
+import HomeJS from "/routes/HomeJS.jsx";
+import HomeE from "/routes/HomeE.jsx";
+import ProfileJS from "/routes/ProfileJS.jsx";
+import ProfileE from "/routes/ProfileE.jsx";
+import ActivityJS from "/routes/ActivityJS.jsx";
+import ActivityE from "/routes/ActivityE.jsx";
 import Login from "/routes/Login.jsx";
 import Register from "/routes/Register.jsx";
+import { Toaster } from "react-hot-toast";
+import { UserContextProvider, UserContext } from "/context/userContext";
 import "./index.css";
 import axios from "axios";
-import { Toaster } from "react-hot-toast";
-import { UserContextProvider } from "../context/userContext";
 
 axios.defaults.baseURL = "http://localhost:9000";
 axios.defaults.withCredentials = true;
-
-import {
-  BrowserRouter as Router,
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -30,19 +29,39 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <Root />,
+    element: (
+      <UserContext.Consumer>
+        {({ role }) => (role === "job-seeker" ? <RootJS /> : <RootE />)}
+      </UserContext.Consumer>
+    ),
     children: [
       {
         path: "/home",
-        element: <Home />,
+        element: (
+          <UserContext.Consumer>
+            {({ role }) => (role === "job-seeker" ? <HomeJS /> : <HomeE />)}
+          </UserContext.Consumer>
+        ),
       },
       {
         path: "/activity",
-        element: <Activity />,
+        element: (
+          <UserContext.Consumer>
+            {({ role }) =>
+              role === "job-seeker" ? <ActivityJS /> : <ActivityE />
+            }
+          </UserContext.Consumer>
+        ),
       },
       {
         path: "/profile",
-        element: <Profile />,
+        element: (
+          <UserContext.Consumer>
+            {({ role }) =>
+              role === "job-seeker" ? <ProfileJS /> : <ProfileE />
+            }
+          </UserContext.Consumer>
+        ),
       },
     ],
   },
@@ -50,6 +69,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <UserContextProvider>
+      <Toaster position="bottom-right" toastOptions={{ duration: 2000 }} />
+      <RouterProvider router={router} />
+    </UserContextProvider>
   </React.StrictMode>
 );

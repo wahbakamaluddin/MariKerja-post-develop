@@ -126,9 +126,10 @@ const getProfile = (req, res) => {
   // Get token from cookies
   const { token } = req.cookies;
   if (token) {
-    jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
+    jwt.verify(token, process.env.JWT_SECRET, {}, (err, decoded) => {
       if (err) throw err;
-      res.json(user);
+      const { role } = decoded;
+      res.json({ role });
     });
   } else {
     res.json(null);

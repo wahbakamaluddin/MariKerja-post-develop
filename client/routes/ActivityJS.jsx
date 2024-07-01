@@ -1,4 +1,4 @@
-export default function Activity() {
+export default function ActivityJS() {
   return (
     <div className="flex h-screen bg-white">
       {/* Content */}
