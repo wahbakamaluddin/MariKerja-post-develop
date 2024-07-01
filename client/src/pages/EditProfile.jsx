@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import TopNav from '../components/TopNav';
 import { Sidebar } from '../components/SideBar'; 
+import { Link } from 'react-router-dom';
+
 
 export default function ProfileE() {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -113,7 +115,7 @@ export default function ProfileE() {
                 </select>
               </div>
               <div className="flex gap-2">
-                <button className="mb-4 px-4 py-2 bg-blue-500 text-white rounded">Cancel changes</button>
+                <Link to="/profilee" className="mb-4 px-4 py-2 bg-blue-500 text-white rounded">Cancel changes</Link>
                 <button className="mb-4 px-4 py-2 bg-blue-500 text-white rounded">Save changes</button>
               </div>
             </div>
@@ -122,3 +124,4 @@ export default function ProfileE() {
     </div>
   );
 }
+
