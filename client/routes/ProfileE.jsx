@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 export default function ProfileE() {
   return (
     <div className="flex h-screen bg-white">
-      {/* Content */}
+      <TopNavEmpty title="Profile" />
       <div>
         {/* Sticky Navigation Bar */}
-        <TopNavEmpty title="Profile" />
         {/* User Information */}
         <div className="flex-1 p-8 text-left  ">
           <div className="mb-10 mt-10">

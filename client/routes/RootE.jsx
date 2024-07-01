@@ -113,6 +113,7 @@ export default function RootE() {
         </div>
       </div>
       <div className="flex-grow">
+        {/* This is where the child routes will be rendered */}
         <Outlet />
       </div>
     </div>

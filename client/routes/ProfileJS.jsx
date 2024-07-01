@@ -1,7 +1,7 @@
 export default function ProfileE() {
   return (
     <div className="flex h-screen bg-white">
-      {/* Content */}
+      <TopNavEmpty title="Profile" />
       <div>
         {/* Sticky Navigation Bar */}
         {/* User Information */}

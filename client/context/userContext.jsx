@@ -1,69 +1,3 @@
-// import axios from "axios";
-// import { createContext, useState, useEffect } from "react";
-
-// export const UserContext = createContext({});
-
-// export function UserContextProvider({ children }) {
-//   const [user, setUser] = useState(null);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     if (!user) {
-//       axios
-//         .get("/profile")
-//         .then(({ data }) => {
-//           setUser(data);
-//           setLoading(false);
-//         })
-//         .catch(() => {
-//           setUser(null);
-//           setLoading(false);
-//         });
-//     } else {
-//       setLoading(false);
-//     }
-//   }, [user]);
-
-//   return (
-//     <UserContext.Provider value={{ user, setUser, loading }}>
-//       {children}
-//     </UserContext.Provider>
-//   );
-// }
-
-// import axios from "axios";
-// import { createContext, useState, useEffect } from "react";
-
-// export const UserContext = createContext({});
-
-// export function UserContextProvider({ children }) {
-//   const [user, setUser] = useState(null);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     if (!user) {
-//       axios
-//         .get("/profile")
-//         .then(({ data }) => {
-//           setUser(data);
-//           setLoading(false);
-//         })
-//         .catch(() => {
-//           setUser(null);
-//           setLoading(false);
-//         });
-//     } else {
-//       setLoading(false);
-//     }
-//   }, [user]);
-
-//   return (
-//     <UserContext.Provider value={{ user, setUser, loading }}>
-//       {children}
-//     </UserContext.Provider>
-//   );
-// }
-
 import axios from "axios";
 import { createContext, useState, useEffect } from "react";
 
@@ -71,7 +5,7 @@ export const UserContext = createContext({});
 
 export function UserContextProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [userType, setUserType] = useState(""); // Step 1: Add a new state variable for user type
+  const [role, setRole] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -80,13 +14,14 @@ export function UserContextProvider({ children }) {
         .get("/profile")
         .then(({ data }) => {
           setUser(data);
-          setUserType(data.role); // Step 2: Assume the response has a 'type' field indicating user type
-          console.log("User Type:", data.role); // Log statement to see the user type
+          setRole(data.role);
+          // show the user type and email in the console
+          console.log("User Type:", data.role, data.email);
           setLoading(false);
         })
         .catch(() => {
           setUser(null);
-          setUserType(""); // Reset userType on error
+          setRole("");
           setLoading(false);
         });
     } else {
@@ -95,8 +30,8 @@ export function UserContextProvider({ children }) {
   }, [user]);
 
   return (
-    <UserContext.Provider value={{ user, setUser, userType, loading }}>
-      {" "}
+    // pass the role state to the value prop for the role-based access on the routes
+    <UserContext.Provider value={{ user, setUser, role, loading }}>
       {children}
     </UserContext.Provider>
   );

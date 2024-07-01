@@ -1,16 +1,17 @@
 import { Outlet } from "react-router-dom";
+import TopNavEmpty from "../src/components/TopNavEmpty";
 
 export default function HomeE() {
   return (
     <div className="flex h-screen bg-white">
-      {/* Content */}
+      <TopNavEmpty title="Home" />{" "}
       <div>
         {/* Sticky Navigation Bar */}
         <div className="flex-1 p-8">
           <div className=" mt-10">
             {/* Search and Filter */}
             <h2 className="flex text-2xl font-bold text-left mb-4">
-              List of all job
+              Available Jobs{" "}
             </h2>
             <div className="flex mb-4">
               <input

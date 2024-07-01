@@ -94,7 +94,7 @@ const loginUser = async (req, res) => {
     const user = await User.findOne({ email });
     if (!user) {
       return res.json({
-        error: "User and Password does not match",
+        error: "Email and Password does not match",
       });
     }
 
@@ -102,7 +102,8 @@ const loginUser = async (req, res) => {
     const match = await comparePassword(password, user.password);
     if (match) {
       jwt.sign(
-        { email: user.email, id: user._id, name: user.name },
+        // use the user's email, id, name, and role to create a token
+        { email: user.email, id: user._id, name: user.name, role: user.role },
         process.env.JWT_SECRET,
         {},
         (err, token) => {
@@ -128,8 +129,9 @@ const getProfile = (req, res) => {
   if (token) {
     jwt.verify(token, process.env.JWT_SECRET, {}, (err, decoded) => {
       if (err) throw err;
-      const { role } = decoded;
-      res.json({ role });
+      // Get user's email and role from the token for role-based access
+      const { email, role } = decoded;
+      res.json({ email, role });
     });
   } else {
     res.json(null);

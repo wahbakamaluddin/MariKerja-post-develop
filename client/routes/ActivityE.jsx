@@ -1,7 +1,10 @@
+import TopNavEmpty from "../src/components/TopNavEmpty";
+
 export default function ActivityE() {
   return (
     <div className="flex h-screen bg-white">
       {/* Sticky Navigation Bar */}
+      <TopNavEmpty title="Activity" />
       {/* User Information */}
       <div className="flex-1 p-8">
         <div className=" mt-10">

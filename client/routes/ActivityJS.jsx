@@ -1,7 +1,7 @@
 export default function ActivityJS() {
   return (
     <div className="flex h-screen bg-white">
-      {/* Content */}
+      <TopNavEmpty title="Activity" />
       <div>
         {/* Sticky Navigation Bar */}
         {/* User Information */}
