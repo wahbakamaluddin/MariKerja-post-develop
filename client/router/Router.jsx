@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     element: <SideBar />,
     children: [
       {
-        path: "/home",
+        path: "/",
         element: <Home />,
       },
       {

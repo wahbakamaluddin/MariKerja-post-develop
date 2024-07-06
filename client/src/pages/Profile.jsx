@@ -1,7 +1,7 @@
 import { React, useContext } from "react";
 import { UserContext } from "../../context/userContext";
-import ProfileJS from "../components/user-based/ProfileJS";
-import ProfileE from "../components/user-based/ProfileE";
+import ProfileJS from "../components/role-based/ProfileJS";
+import ProfileE from "../components/role-based/ProfileE";
 
 export default function Profile() {
   const { role } = useContext(UserContext);
