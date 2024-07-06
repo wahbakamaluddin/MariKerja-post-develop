@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
-import { UserContext } from "../../context/userContext"; // Update the import path as necessary
+import { UserContext } from "../../context/UserContext"; // Update the import path as necessary
 
 export default function SideBar() {
   const { user, loading } = useContext(UserContext);

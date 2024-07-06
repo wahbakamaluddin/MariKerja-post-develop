@@ -7,6 +7,7 @@ import Home from "../src/pages/Home";
 import PostJob from "../src/pages/PostJob.jsx";
 import Activity from "../src/pages/Activity";
 import SideBar from "../src/components/SideBar.jsx";
+import ProtectedRoute from "../src/ProtectedRoute/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,19 +23,36 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: (
+          <ProtectedRoute>
+            {" "}
+            <Home />{" "}
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/activity",
-        element: <Activity />,
+        element: (
+          <ProtectedRoute>
+            <Activity />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/profile",
-        element: <Profile />,
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "activity/postjob",
-        element: <PostJob />,
+        element: (
+          <ProtectedRoute>
+            <PostJob />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

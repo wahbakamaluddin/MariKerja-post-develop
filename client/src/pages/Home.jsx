@@ -1,5 +1,5 @@
 import { React, useContext } from "react";
-import { UserContext } from "../../context/userContext";
+import { UserContext } from "../../context/UserContext";
 import HomeJs from "../components/role-based/HomeJS";
 import HomeE from "../components/role-based/HomeE";
 
