@@ -7,6 +7,7 @@ import Home from "../src/pages/Home";
 import PostJob from "../src/pages/PostJob.jsx";
 import Activity from "../src/pages/Activity";
 import SideBar from "../src/components/SideBar.jsx";
+import ErrorPage from "../src/pages/ErrorPage.jsx";
 import ProtectedRoute from "../src/ProtectedRoute/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "*",
+    element: <ErrorPage />,
   },
 ]);
 
