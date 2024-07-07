@@ -2,9 +2,11 @@ const User = require("../models/user");
 const { hashPassword, comparePassword } = require("../helpers/auth");
 const jwt = require("jsonwebtoken");
 
-// Register endpoint
+// Register endpoint, called by Register.jsx to create a new user
 const registerUser = async (req, res) => {
   try {
+    // Destructure user data from request body sent from Register.jsx
+    // so that it can be referred to directly by variable name
     const {
       firstname,
       lastname,
@@ -16,18 +18,19 @@ const registerUser = async (req, res) => {
     } = req.body;
 
     // Validation
+    // Check if first name and last name are provided
     if (!firstname || !lastname) {
       return res
         .status(400)
         .json({ error: "First name and last name are required" });
     }
-
+    // Check if password is provided and is at least 6 characters long
     if (!password || password.length < 6) {
       return res.status(400).json({
         error: "Password is required and must be at least 6 characters",
       });
     }
-
+    // Check if email is provided
     if (!email) {
       return res.status(400).json({ error: "Email is required" });
     }
