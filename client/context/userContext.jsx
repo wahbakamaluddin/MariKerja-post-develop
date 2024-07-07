@@ -12,6 +12,9 @@ export function UserContextProvider({ children }) {
   useEffect(() => {
     if (!user) {
       axios
+        // Get user profile by sending a GET request to the /auth/profile endpoint
+        // using the token stored in the browser's local storage as the authorization
+        // header
         .get("/auth/profile")
         .then(({ data }) => {
           setUser(data);

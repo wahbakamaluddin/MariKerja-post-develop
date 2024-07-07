@@ -81,7 +81,7 @@ const registerUser = async (req, res) => {
   }
 };
 
-// Login endpoint
+// Login endpoint, called by Login.jsx to authenticate user, set token in cookie, and respond with user data
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -109,6 +109,7 @@ const loginUser = async (req, res) => {
           return res.status(500).json({ error: "Failed to create token" });
         }
         // Set token in cookie and respond with user data
+        // httpOnly: true makes sure that the cookie is only accessible by the server
         res.cookie("token", token, { httpOnly: true }).json(user);
       }
     );
@@ -118,10 +119,11 @@ const loginUser = async (req, res) => {
   }
 };
 
-// Get Profile endpoint
+// Get Profile endpoint, called by UserContext.jsx to get user information
 const getProfile = (req, res) => {
-  // Get token from cookies
+  // Retrieve token from cookie using req.cookies.token
   const token = req.cookies.token;
+  // If no token, respond with null
   if (!token) {
     return res.json(null);
   }
@@ -133,6 +135,7 @@ const getProfile = (req, res) => {
       return res.status(401).json({ error: "Unauthorized" });
     }
     const { email, role, id } = decoded;
+    // respond with user information: email, role, and id
     res.json({ email, role, id });
   });
 };
@@ -142,10 +145,18 @@ function testConnectivityAuth(req, res) {
   res.json({ message: "Auth controller is connected" });
 }
 
+const logoutUser = (req, res) => {
+  // Clear the token cookie
+  res.clearCookie("token", { httpOnly: true });
+  // Respond to the client that logout was successful
+  res.json({ message: "Logged out successfully" });
+};
+
 // Export functions
 module.exports = {
   registerUser,
   loginUser,
   getProfile,
+  logoutUser,
   testConnectivityAuth,
 };
