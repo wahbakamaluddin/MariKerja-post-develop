@@ -124,12 +124,9 @@ const loginUser = async (req, res) => {
 
 // Get Profile endpoint, called by UserContext.jsx to get user information
 const getProfile = (req, res) => {
-  // Retrieve token from cookie using req.cookies.token
-  const token = req.cookies.token;
-  console.log("Token:", token);
-  // If no token, respond with null
+  const token = req.cookies.token; // Retrieve token from cookie using req.cookies.token
   if (!token) {
-    return res.json(null);
+    return res.json(null); // If token is not found, respond with null, indicating that user is not logged in
   }
 
   // Verify token and extract user information
