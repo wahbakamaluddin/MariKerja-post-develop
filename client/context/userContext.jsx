@@ -14,8 +14,8 @@ export function UserContextProvider({ children }) {
         // using the token stored in the browser's local storage as the authorization
         // header
         .get("/auth/profile")
-        .then(({ response }) => {
-          const user = response.data; // Rename the response data to user for readability
+        .then(({ data }) => {
+          const user = data; // Rename the response data to user for readability
           setUser(user); // Set the user state to the user data
           console.log("User Type:", user.role, user.email, user.id);
           setLoading(false); //

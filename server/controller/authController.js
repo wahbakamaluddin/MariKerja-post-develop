@@ -126,6 +126,7 @@ const loginUser = async (req, res) => {
 const getProfile = (req, res) => {
   // Retrieve token from cookie using req.cookies.token
   const token = req.cookies.token;
+  console.log("Token:", token);
   // If no token, respond with null
   if (!token) {
     return res.json(null);
