@@ -1,14 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import TopNav from "../components/TopNav";
+import { UserContext } from "../../context/UserContext";
 
 export default function JobDetail() {
   const { id } = useParams(); // Get jobId from URL parameters
   const navigate = useNavigate();
   const [job, setJob] = useState(null);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/job/${id}`) // Adjust the URL as needed
+    fetch(`http://localhost:8000/jobs/${id}`) // Adjust the URL as needed
       .then((response) => response.json())
       .then((data) => setJob(data))
       .catch((error) => console.error("There was an error!", error));
@@ -22,7 +24,7 @@ export default function JobDetail() {
     <div className="flex h-screen bg-white">
       <div className="flex-1">
         {/* Sticky Navigation Bar */}
-        <TopNav title={job.jobname} href="/activitye" />
+        <TopNav title={job.jobname} />
         <div className="p-4">
           {" "}
           {/* Adjusted padding here */}
@@ -101,16 +103,19 @@ export default function JobDetail() {
             <div className="flex justify-end gap-4">
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                onClick={() => navigate("/listingjob")}
+                onClick={() => navigate(-1)}
               >
                 Back
               </button>
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                onClick={() => navigate("/activitye")}
-              >
-                Apply Now
-              </button>
+              {/* Render the apply button only for job-seeker */}
+              {user.role === "job-seeker" && (
+                <button
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={() => navigate("/activitye")}
+                >
+                  Apply Now
+                </button>
+              )}
             </div>
           </div>
         </div>

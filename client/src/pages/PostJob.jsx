@@ -52,10 +52,9 @@ export default function PostJob() {
   return (
     <div className="flex h-screen bg-white">
       <div>
-        <TopNav title="Post a job" href="/activitye" />
+        <TopNav title="Post a job" href="/activity" />
         <div className="flex-1 p-8 text-left">
           <div className="mt-10">
-            {/* Form fields... */}
             <div className="w-full flex flex-col mb-4">
               <label
                 htmlFor="Name"
@@ -159,17 +158,6 @@ export default function PostJob() {
                   onChange={(e) => setData({ ...data, state: e.target.value })}
                   style={{ textAlign: "start" }}
                 />
-                {/* <select
-                                    name="state"
-                                    id="state"
-                                    required
-                                    value={data.state}
-                                    onChange={(e) => setData({ ...data, state: e.target.value })}
-                                    className=" w-2/3 px-3 py-2 border border-gray-700 bg-white text-black rounded-md"
-                                >
-                                    <option value="Part time">Negeri Sembilan</option>
-                                    <option value="Full time">Melaka</option>
-                                </select> */}
               </div>
               <div className="mb-4 w-1/4">
                 <label
