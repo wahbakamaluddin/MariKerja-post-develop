@@ -12,35 +12,6 @@ export default function Login() {
     password: "",
   });
   const { setUser } = useContext(UserContext);
-  // const loginUser = async (e) => {
-  //   e.preventDefault();
-  //   const { email, password } = data;
-  //   console.log("Attempting to log in with:", email, password); // Log the email and password being used to attempt login
-
-  //   try {
-  //     // Post the email and password to the /auth/login endpoint
-  //     // Rename the response data to responseData
-  //     const { data: responseData } = await axios.post("/auth/login", {
-  //       email,
-  //       password,
-  //     });
-  //     console.log("Login response data:", responseData); // Log the response data from the login attempt
-
-  //     if (responseData.error) {
-  //       console.log("enter the if dataerror"); // Log any login error
-  //       console.error("Login error:", responseData.error); // Log any login error
-
-  //       toast.error(responseData.error);
-  //     } else {
-  //       console.log("entering the else block"); // Log the user data
-  //       setUser(responseData);
-  //       console.log("User data is set:", responseData); // Log the user data
-  //       setData({});
-  //       console.log("navigating"); // Log the user data
-  //       navigate("/");
-  //     }
-  //   } catch (error) {}
-  // };
   const loginUser = async (e) => {
     e.preventDefault();
     const { email, password } = data;
