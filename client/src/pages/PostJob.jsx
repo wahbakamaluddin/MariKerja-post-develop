@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import TopNav from "../components/TopNav";
 import { UserContext } from "../../context/UserContext";
-import { Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 export default function PostJob() {
   const navigate = useNavigate();
-  const { id } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [data, setData] = useState({
     jobname: "",
     address: "",
@@ -18,15 +18,34 @@ export default function PostJob() {
     district: "",
     startSalary: "",
     endSalary: "",
-    userId: id,
+    userId: user.id,
   });
+
   const handleSubmit = async () => {
     try {
-      await axios.post("/jobs", data);
-      toast.success("Job posted successfully!"); // Display success toast notification
-      navigate("/activity");
+      console.log("entering try block");
+      const response = await axios.post("/jobs", data); // Corrected to capture the whole response
+      console.log("Submitted data");
+
+      if (response.data.error) {
+        // Corrected to access error from response.data
+        console.log("Job posting error:", response.data.error);
+        toast.error(response.data.error);
+      } else {
+        console.log("Job posted successfully:", response.data); // Accessing data directly
+        toast.success("Job posted successfully!");
+        navigate("/activity");
+      }
     } catch (error) {
-      console.error("Error posting job:", error);
+      console.log("entering catch block");
+      console.log("catch error Axios error:", error);
+
+      if (error.response && error.response.data && error.response.data.error) {
+        console.log("entering if error.response.data.error");
+        toast.error(error.response.data.error);
+      } else {
+        toast.error("An unexpected error occurred. Please try again.");
+      }
     }
   };
 
@@ -169,17 +188,6 @@ export default function PostJob() {
                   }
                   style={{ textAlign: "start" }}
                 />
-                {/* <select
-                                    name="district"
-                                    id="district"
-                                    required
-                                    value={data.district}
-                                    onChange={(e) => setData({ ...data, district: e.target.value })}
-                                    className=" w-2/3 px-3 py-2 border border-gray-700 bg-white text-black rounded-md"
-                                >
-                                    <option value="N9">Nilai</option>
-                                    <option value="Melaka">Seremban</option>
-                                </select> */}
               </div>
             </div>
             <div className="mb-4">
@@ -216,7 +224,6 @@ export default function PostJob() {
                 </div>
               </div>
             </div>
-            {/* Other form fields... */}
             <div className="flex justify-start gap-4">
               <button
                 className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
