@@ -1,52 +1,21 @@
 import TopNavEmpty from "../TopNavEmpty";
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import { UserContext } from "../../../context/UserContext";
-import axios from "axios";
+import useFetchUserProfile from "../../hooks/useFetchUserProfile";
 import { Link } from "react-router-dom";
 
 export default function ProfileE() {
   const { user } = useContext(UserContext); // Use useContext to access the current user
-  const [userProfile, setUserProfile] = useState({}); // State to hold the user profile
-  const [isLoading, setIsLoading] = useState(true); // State to track loading status
-  const userId = user?.id; // Get the user ID from the current user object
-  console.log("profileE.jsx User ID:", userId);
-
-  useEffect(() => {
-    console.log("useEffect triggered with userId:", userId); // Debug: Check when useEffect is triggered and with what userId
-    if (userId) {
-      console.log("Fetching data for userId:", userId); // Debug: Confirm fetching data
-      setIsLoading(true); // Set loading to true before fetching data
-      axios
-        .get(`users/${userId}`)
-        .then((response) => {
-          console.log(
-            "Data fetched successfully for userId:",
-            userId,
-            "Response data:",
-            response.data
-          ); // Debug: Check fetched data
-          setUserProfile(response.data);
-          setIsLoading(false); // Set loading to false after fetching data
-        })
-        .catch((error) => {
-          console.error(
-            "There was an error fetching data for userId:",
-            userId,
-            error
-          ); // Debug: Check error details
-          setIsLoading(false); // Ensure loading is set to false even if there's an error
-        });
-    } else {
-      console.log("No userId provided, skipping data fetch."); // Debug: Check condition when no userId is provided
-      setIsLoading(false); // If no userId, ensure loading is set to false
-    }
-  }, [userId]); // Depend on userId to re-fetch data when it changes
+  const { userProfile, isLoading, error } = useFetchUserProfile(user?.id); // Use custom hook to fetch user profile
 
   if (isLoading) {
     console.log("Rendering loading state..."); // Debug: Check when loading state is rendered
     return <div>Loading...</div>;
   }
-  if (!user) {
+  if (error) {
+    return <div>Error fetching data: {error.message}</div>;
+  }
+  if (!userProfile) {
     return <div>User not found</div>;
   }
 

@@ -10,8 +10,9 @@ export default function ProfileE() {
   const [isLoading, setIsLoading] = useState(true); // State to track loading status
   const userId = user?.id; // Get the user ID from the current user object
   console.log("profileE.jsx User ID:", userId);
+
   {
-    /* Fetching user information */
+    /* Fetch user information start */
   }
   useEffect(() => {
     console.log("useEffect triggered with userId:", userId); // Debug: Check when useEffect is triggered and with what userId
@@ -50,6 +51,18 @@ export default function ProfileE() {
   }
   if (!user) {
     return <div>User not found</div>;
+  }
+
+  {
+    /* Fetch user information end*/
+  }
+
+  {
+    /* Update user information logics start*/
+  }
+
+  {
+    /* Update user information logics end*/
   }
 
   return (

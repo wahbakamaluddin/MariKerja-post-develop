@@ -55,27 +55,6 @@ const registerUser = async (req, res) => {
       role,
     });
 
-    // Initialize profile based on role
-    if (role === "job-seeker") {
-      user.profile = {
-        resume: {
-          skills: [],
-          contactNumber: "",
-          address: "",
-        },
-      };
-    } else if (role === "employer") {
-      user.profile = {
-        company: {
-          name: "",
-          description: "",
-          address: "",
-          requirements: [],
-          aboutCompany: "",
-        },
-      };
-    }
-
     // Return user data
     res.json(user);
   } catch (error) {
