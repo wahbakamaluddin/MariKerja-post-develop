@@ -8,6 +8,7 @@ import PostJob from "../src/pages/PostJob.jsx";
 import Activity from "../src/pages/Activity";
 import JobDetail from "../src/pages/JobDetail.jsx";
 import SideBar from "../src/components/SideBar.jsx";
+import EditProfile from "../src/pages/EditProfile.jsx";
 import ErrorPage from "../src/pages/ErrorPage.jsx";
 import ProtectedRoute from "../src/ProtectedRoute/ProtectedRoute.jsx";
 
@@ -41,6 +42,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "activity/postjob",
+        element: (
+          <ProtectedRoute>
+            <PostJob />
+          </ProtectedRoute>
+        ),
+      },
+      {
         path: "/profile",
         element: (
           <ProtectedRoute>
@@ -49,10 +58,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "activity/postjob",
+        path: "/profile/edit",
         element: (
           <ProtectedRoute>
-            <PostJob />
+            <EditProfile />
           </ProtectedRoute>
         ),
       },
