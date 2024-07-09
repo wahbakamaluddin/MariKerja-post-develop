@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 import TopNav from "../components/TopNav";
 import { UserContext } from "../../context/UserContext";
 
@@ -10,9 +11,10 @@ export default function JobDetail() {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/jobs/${id}`) // Adjust the URL as needed
-      .then((response) => response.json())
-      .then((data) => setJob(data))
+    console.log("fetching job details for job ID:", id);
+    axios
+      .get(`jobs/${id}`) // Adjust the URL as needed
+      .then((response) => setJob(response.data))
       .catch((error) => console.error("There was an error!", error));
   }, [id]); // Re-fetch job data when id changes
 

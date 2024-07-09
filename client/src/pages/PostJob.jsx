@@ -138,8 +138,8 @@ export default function PostJob() {
                 onChange={(e) => setData({ ...data, status: e.target.value })}
                 className="w-1/4 px-3 py-2 border border-gray-700 bg-white text-black rounded-md"
               >
-                <option value="Part time">Part time</option>
-                <option value="Full time">Full time</option>
+                <option value="part-time">Part time</option>
+                <option value="full-time">Full time</option>
               </select>
             </div>
             <div className="flex gap-2">
