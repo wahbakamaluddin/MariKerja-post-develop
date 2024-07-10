@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import TopNav from "../components/TopNav";
 import { UserContext } from "../../context/UserContext";
@@ -116,7 +116,11 @@ export default function Hiring1() {
                     <tr key={applicant.applicantId}>
                       <td className="border px-4 py-2">{index + 1}</td>
                       <td className="border px-4 py-2">
-                        {userProfile?.firstname} {userProfile?.lastname}
+                        <Link
+                          to={`/jobs/${jobId}/applications/${applicant.applicantId}`}
+                        >
+                          {userProfile?.firstname} {userProfile?.lastname}
+                        </Link>
                       </td>
                       <td className="border px-4 py-2">
                         {userProfile?.profile?.resume?.contactNumber}

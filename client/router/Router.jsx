@@ -11,6 +11,7 @@ import SideBar from "../src/components/SideBar.jsx";
 import EditProfile from "../src/pages/EditProfile.jsx";
 import ErrorPage from "../src/pages/ErrorPage.jsx";
 import Hiring1 from "../src/pages/Hiring1.jsx";
+import Hiring2 from "../src/pages/Hiring2.jsx";
 import ProtectedRoute from "../src/ProtectedRoute/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
@@ -83,10 +84,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "jobs/:jobId/applications/applicantId",
+        path: "jobs/:jobId/applications/:applicantId",
         element: (
           <ProtectedRoute>
-            <Hiring1 />
+            <Hiring2 />
           </ProtectedRoute>
         ),
       },
