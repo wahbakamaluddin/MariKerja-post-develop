@@ -83,7 +83,9 @@ export default function ActivityE() {
                         {index + 1}
                       </td>
                       <td className="border px-4 py-2">
-                        <Link to={`/jobs/${job._id}`}>{job.jobname}</Link>
+                        <Link to={`/jobs/${job._id}/applications`}>
+                          {job.jobname}
+                        </Link>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         {job.state}

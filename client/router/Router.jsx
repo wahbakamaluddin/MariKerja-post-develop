@@ -10,6 +10,7 @@ import JobDetail from "../src/pages/JobDetail.jsx";
 import SideBar from "../src/components/SideBar.jsx";
 import EditProfile from "../src/pages/EditProfile.jsx";
 import ErrorPage from "../src/pages/ErrorPage.jsx";
+import Hiring1 from "../src/pages/Hiring1.jsx";
 import ProtectedRoute from "../src/ProtectedRoute/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
@@ -70,6 +71,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <JobDetail />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "jobs/:id/applications",
+        element: (
+          <ProtectedRoute>
+            <Hiring1 />
           </ProtectedRoute>
         ),
       },
