@@ -169,6 +169,14 @@ const userSchema = new mongoose.Schema({
           type: String,
           default: "n/a",
         },
+        about: {
+          type: String,
+          default: "n/a",
+        },
+        education: {
+          type: String,
+          default: "n/a",
+        },
       },
       company: {
         name: {

@@ -45,6 +45,8 @@ const updateUserProfile = async (req, res) => {
         contactNumber:
           profile.resume.contactNumber || user.profile.resume.contactNumber,
         address: profile.resume.address || user.profile.resume.address,
+        about: profile.resume.about || user.profile.resume.about,
+        education: profile.resume.education || user.profile.resume.education,
       };
     } else if (role === "employer" && profile?.company) {
       user.profile.company = {

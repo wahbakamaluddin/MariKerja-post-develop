@@ -53,6 +53,7 @@ const registerUser = async (req, res) => {
           website: "n/a",
           address: "n/a",
           about: "n/a",
+          education: "n/a",
         },
       };
     } else if (role === "job-seeker") {
@@ -61,6 +62,7 @@ const registerUser = async (req, res) => {
           skills: "n/a",
           contactNumber: "n/a",
           address: "n/a",
+          about: "n/a",
         },
       };
     }
