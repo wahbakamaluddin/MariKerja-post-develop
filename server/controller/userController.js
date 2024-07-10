@@ -38,7 +38,7 @@ const updateUserProfile = async (req, res) => {
     user.role = role || user.role;
     user.email = email || user.email;
 
-    // Update profile based on role
+    // Update profile based on role, means it must be defined in the request body, otherwise it will be ignored
     if (role === "job-seeker" && profile?.resume) {
       user.profile.resume = {
         skills: profile.resume.skills || user.profile.resume.skills, // Or statement to keep existing value if not provided
