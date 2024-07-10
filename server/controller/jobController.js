@@ -152,6 +152,37 @@ const applyJob = async (req, res) => {
       .json({ error: "An error occurred while applying for the job" });
   }
 };
+
+// Function to update applicant status
+const updateApplicantStatus = async (req, res) => {
+  const { jobId, applicantId } = req.params;
+  const { status } = req.body;
+
+  try {
+    const job = await Job.findById(jobId);
+    if (!job) {
+      return res.status(404).json({ error: "Job not found" });
+    }
+
+    const applicant = job.applicants.find(
+      (applicant) => applicant.applicantId.toString() === applicantId
+    );
+    if (!applicant) {
+      return res.status(404).json({ error: "Applicant not found" });
+    }
+
+    applicant.status = status;
+    await job.save();
+
+    res.status(200).json(job);
+  } catch (error) {
+    console.error("Error updating applicant status:", error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while updating applicant status" });
+  }
+};
+
 // Test connectivity endpoint
 function testConnectivityJob(req, res) {
   res.json({ message: "Job controller is connected" });
@@ -164,5 +195,6 @@ module.exports = {
   postJob,
   deleteJobById,
   testConnectivityJob,
+  updateApplicantStatus,
   applyJob,
 };

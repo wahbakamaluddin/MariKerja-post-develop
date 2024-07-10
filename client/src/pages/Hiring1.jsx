@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import TopNav from "../components/TopNav";
 import { UserContext } from "../../context/UserContext";
-import useFetchUserProfile from "../hooks/useFetchUserProfile";
 
 export default function Hiring1() {
   const { id } = useParams(); // Get jobId from URL parameters
@@ -61,6 +60,16 @@ export default function Hiring1() {
     fetchApplicantProfiles();
   }, [job]);
 
+  const handleApplicantStatus = (applicantId, status) => {
+    axios
+      .patch(`http://localhost:8000/jobs/${id}/applicants/${applicantId}`, {
+        status,
+      })
+      .then((response) => {
+        setJob(response.data);
+      })
+      .catch((error) => console.error("There was an error!", error));
+  };
   if (!job) {
     return <div>Loading...</div>;
   }
