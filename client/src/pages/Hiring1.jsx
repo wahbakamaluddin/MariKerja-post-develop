@@ -3,9 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import TopNav from "../components/TopNav";
 import { UserContext } from "../../context/UserContext";
+import toast from "react-hot-toast";
 
 export default function Hiring1() {
-  const { id } = useParams(); // Get jobId from URL parameters
+  const { jobId } = useParams(); // Get jobId from URL parameters
   const navigate = useNavigate();
   const [job, setJob] = useState(null);
   const [applicantProfiles, setApplicantProfiles] = useState({});
@@ -14,8 +15,8 @@ export default function Hiring1() {
   useEffect(() => {
     const fetchJobDetails = async () => {
       try {
-        console.log("fetching job details for job ID:", id);
-        const response = await axios.get(`http://localhost:8000/jobs/${id}`); // Adjust the URL as needed
+        console.log("fetching job details for job ID:", jobId);
+        const response = await axios.get(`http://localhost:8000/jobs/${jobId}`); // Adjust the URL as needed
         setJob(response.data);
       } catch (error) {
         console.error("There was an error!", error);
@@ -23,7 +24,7 @@ export default function Hiring1() {
     };
 
     fetchJobDetails();
-  }, [id]); // Re-fetch job data when id changes
+  }, [jobId]); // Re-fetch job data when id changes
 
   useEffect(() => {
     const fetchApplicantProfiles = async () => {
@@ -60,13 +61,14 @@ export default function Hiring1() {
     fetchApplicantProfiles();
   }, [job]);
 
-  const handleApplicantStatus = (applicantId, status) => {
+  const handleApplicantStatus = (applicantName, applicantId, status) => {
     axios
-      .patch(`http://localhost:8000/jobs/${id}/applicants/${applicantId}`, {
+      .patch(`http://localhost:8000/jobs/${jobId}/applicants/${applicantId}`, {
         status,
       })
       .then((response) => {
         setJob(response.data);
+        toast.success(`${applicantName} ${status}!`);
       })
       .catch((error) => console.error("There was an error!", error));
   };
@@ -125,6 +127,7 @@ export default function Hiring1() {
                           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0.5 px-2 rounded"
                           onClick={() =>
                             handleApplicantStatus(
+                              userProfile.firstname,
                               applicant.applicantId,
                               "hired"
                             )
@@ -138,6 +141,7 @@ export default function Hiring1() {
                           className="bg-red-500 hover:bg-red-700 text-white font-bold py-0.5 px-2 rounded"
                           onClick={() =>
                             handleApplicantStatus(
+                              userProfile.firstname,
                               applicant.applicantId,
                               "rejected"
                             )
