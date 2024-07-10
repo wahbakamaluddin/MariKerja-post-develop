@@ -117,6 +117,41 @@ const deleteJobById = async (req, res) => {
   }
 };
 
+// Apply for a job
+const applyJob = async (req, res) => {
+  const jobId = req.params.id; // Fetch the job ID from the URL params
+  const applicantId = req.body.userId; // Assuming userId is sent in the request body
+
+  try {
+    // Find the job by ID
+    console.log("jobId:", jobId);
+    const job = await Job.findById(jobId);
+    if (!job) {
+      return res.status(404).json({ error: "Job not found" });
+    }
+
+    // Check if user is already an applicant
+    const existingApplicant = job.applicants.find(
+      (applicant) => applicant.applicantId.toString() === applicantId
+    );
+    if (existingApplicant) {
+      return res
+        .status(400)
+        .json({ error: "User already applied for this job" });
+    }
+
+    // Add user to the applicants array
+    job.applicants.push({ applicantId });
+    await job.save();
+
+    res.status(200).json({ message: "Application successful" });
+  } catch (error) {
+    console.error("Error applying for job:", error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while applying for the job" });
+  }
+};
 // Test connectivity endpoint
 function testConnectivityJob(req, res) {
   res.json({ message: "Job controller is connected" });
@@ -129,4 +164,5 @@ module.exports = {
   postJob,
   deleteJobById,
   testConnectivityJob,
+  applyJob,
 };

@@ -8,6 +8,7 @@ router.get("/:id", jobController.getJobByJobId); // GET a single job by ID, full
 router.post("/", jobController.postJob); // POST a new job, full path is /jobs
 router.delete("/:id", jobController.deleteJobById); // DELETE a job by ID, full path is /jobs/:id
 router.get("/test", jobController.testConnectivityJob); // Test connectivity, full path is /jobs/test
+router.post("/:id/apply", jobController.applyJob); // Apply for a job, full path is /jobs/apply/:jobId
 
 // Export router
 module.exports = router;
