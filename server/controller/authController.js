@@ -44,6 +44,27 @@ const registerUser = async (req, res) => {
     // Hash password
     const hashedPassword = await hashPassword(password);
 
+    let initialProfileData = {};
+    if (role === "employer") {
+      initialProfileData = {
+        company: {
+          name: "n/a",
+          contactNumber: "n/a",
+          website: "n/a",
+          address: "n/a",
+          about: "n/a",
+        },
+      };
+    } else if (role === "job-seeker") {
+      initialProfileData = {
+        resume: {
+          skills: "n/a",
+          contactNumber: "n/a",
+          address: "n/a",
+        },
+      };
+    }
+
     // Create user
     const user = await User.create({
       firstname,
@@ -53,6 +74,7 @@ const registerUser = async (req, res) => {
       dateOfBirth: { day, month, year },
       gender,
       role,
+      profile: initialProfileData,
     });
 
     // Return user data

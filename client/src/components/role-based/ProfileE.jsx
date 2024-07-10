@@ -137,7 +137,7 @@ export default function ProfileE() {
                 About Company
               </label>
               <p className="w-2/3 h-40 block  bg-white rounded border border-0.25 border-gray-400 text-black py-1 px-3">
-                {userProfile.profile.company.address}
+                {userProfile.profile.company.about}
               </p>
             </div>
             <Link to="/profile/edit">
