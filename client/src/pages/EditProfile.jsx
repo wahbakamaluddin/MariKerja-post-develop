@@ -1,68 +1,78 @@
-import { useState, useEffect, useContext } from "react";
 import TopNav from "../components/TopNav";
 import { UserContext } from "../../context/UserContext";
-import axios from "axios";
+import useFetchUserProfile from "../hooks/useFetchUserProfile";
+import { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function ProfileE() {
   const { user } = useContext(UserContext); // Use useContext to access the current user
-  const [userProfile, setUserProfile] = useState({}); // State to hold the user profile
-  const [isLoading, setIsLoading] = useState(true); // State to track loading status
+  const { userProfile, isLoading, error } = useFetchUserProfile(user?.id); // Use custom hook to fetch user profile
   const userId = user?.id; // Get the user ID from the current user object
-  console.log("profileE.jsx User ID:", userId);
+  const userRole = user?.role; // Get the user role from the current user object
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    dateOfBirth: {
+      day: 1,
+      month: 1,
+      year: 2000,
+    },
+    gender: "Male",
+    role: userRole,
+    profile: {
+      company: {
+        name: "",
+        contactNumber: "",
+        website: "",
+        address: "",
+        about: "",
+      },
+    },
+  });
 
-  {
-    /* Fetch user information start */
-  }
-  useEffect(() => {
-    console.log("useEffect triggered with userId:", userId); // Debug: Check when useEffect is triggered and with what userId
-    if (userId) {
-      console.log("Fetching data for userId:", userId); // Debug: Confirm fetching data
-      setIsLoading(true); // Set loading to true before fetching data
-      axios
-        .get(`users/${userId}`)
-        .then((response) => {
-          console.log(
-            "Data fetched successfully for userId:",
-            userId,
-            "Response data:",
-            response.data
-          ); // Debug: Check fetched data
-          setUserProfile(response.data);
-          setIsLoading(false); // Set loading to false after fetching data
-        })
-        .catch((error) => {
-          console.error(
-            "There was an error fetching data for userId:",
-            userId,
-            error
-          ); // Debug: Check error details
-          setIsLoading(false); // Ensure loading is set to false even if there's an error
-        });
-    } else {
-      console.log("No userId provided, skipping data fetch."); // Debug: Check condition when no userId is provided
-      setIsLoading(false); // If no userId, ensure loading is set to false
+  const handleSubmit = async () => {
+    try {
+      console.log("entering try block");
+      console.log("Sending data:", formData);
+      const response = await axios.put(`users/${userId}`, formData); // Corrected to capture the whole response
+      console.log("Submitted data: ", formData);
+
+      if (response.data.error) {
+        // Corrected to access error from response.data
+        console.log("Information update error:", response.data.error);
+        toast.error(response.data.error);
+      } else {
+        console.log("Information updated:", response.data); // Accessing data directly
+        toast.success("Information updated successfully!");
+        navigate("/profile");
+      }
+    } catch (error) {
+      console.log("entering catch block");
+      console.log("catch error Axios error:", error);
+
+      if (error.response && error.response.data && error.response.data.error) {
+        console.log("entering if error.response.data.error");
+        toast.error(error.response.data.error);
+      } else {
+        toast.error("An unexpected error occurred. Please try again.");
+      }
     }
-  }, [userId]); // Depend on userId to re-fetch data when it changes
+  };
 
   if (isLoading) {
     console.log("Rendering loading state..."); // Debug: Check when loading state is rendered
     return <div>Loading...</div>;
   }
-  if (!user) {
+  if (error) {
+    return <div>Error fetching data: {error.message}</div>;
+  }
+  if (!userProfile) {
     return <div>User not found</div>;
-  }
-
-  {
-    /* Fetch user information end*/
-  }
-
-  {
-    /* Update user information logics start*/
-  }
-
-  {
-    /* Update user information logics end*/
   }
 
   return (
@@ -76,17 +86,45 @@ export default function ProfileE() {
               <h2 className="text-2xl font-bold text-left mb-4">
                 Personal Information
               </h2>
-              <label
-                htmlFor="Name"
-                className="w-full justify-start block text-black font-medium mb-0"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                className="w-1/2 block bg-white rounded border border-gray-700 focus:border-black focus:ring-2 focus:ring-black-900 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                placeholder={`${userProfile.firstname} ${userProfile.lastname}`}
-              />
+              <div className="flex justify-between">
+                <div className="flex-1 mr-2">
+                  <label
+                    htmlFor="firstName"
+                    className="w-full justify-start block text-black font-medium mb-0"
+                  >
+                    First name
+                  </label>
+                  <input
+                    id="firstName"
+                    type="text"
+                    className="w-full block bg-white rounded border border-gray-700 focus:border-black focus:ring-2 focus:ring-black-900 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    placeholder={`${userProfile.firstname}`}
+                    value={formData.firstname}
+                    onChange={(e) =>
+                      setFormData({ ...formData, firstname: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="flex-1 ml-2">
+                  <label
+                    htmlFor="lastName"
+                    className="w-full justify-start block text-black font-medium mb-0"
+                  >
+                    Last name
+                  </label>
+                  <input
+                    id="lastName"
+                    type="text"
+                    className="w-full block bg-white rounded border border-gray-700 focus:border-black focus:ring-2 focus:ring-black-900 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    placeholder={`${userProfile.lastname}`}
+                    // Assuming you have a corresponding state for the last name
+                    value={formData.lastname}
+                    onChange={(e) =>
+                      setFormData({ ...formData, lastname: e.target.value })
+                    }
+                  />
+                </div>
+              </div>
             </div>
             <div className="w-full flex flex-col mb-4">
               <label
@@ -99,6 +137,10 @@ export default function ProfileE() {
                 type="email"
                 className="w-1/2 block bg-white rounded border border-gray-700 focus:border-black focus:ring-2 focus:ring-black-900 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 placeholder={`${userProfile.email}`}
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
               />
             </div>
             <div className="w-full flex gap-2 justify-start mb-4">
@@ -114,6 +156,16 @@ export default function ProfileE() {
                   id="day"
                   required
                   className="w-1/3 px-3 py-2 border border-gray-700 bg-white text-black rounded-md"
+                  value={formData.dateOfBirth.day}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      dateOfBirth: {
+                        ...formData.dateOfBirth,
+                        day: e.target.value,
+                      },
+                    })
+                  }
                 >
                   {[...Array(31).keys()].map((day) => (
                     <option key={day + 1} value={day + 1}>
@@ -126,6 +178,16 @@ export default function ProfileE() {
                   id="month"
                   required
                   className="w-1/2 px-3 py-2 border border-gray-700 bg-white text-black rounded-md"
+                  value={formData.dateOfBirth.month}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      dateOfBirth: {
+                        ...formData.dateOfBirth,
+                        month: e.target.value,
+                      },
+                    })
+                  }
                 >
                   {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
                     <option key={month} value={month}>
@@ -140,6 +202,16 @@ export default function ProfileE() {
                   id="year"
                   required
                   className="w-1/2 px-3 py-2 border border-gray-700 bg-white text-black rounded-md"
+                  value={formData.dateOfBirth.year}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      dateOfBirth: {
+                        ...formData.dateOfBirth,
+                        year: e.target.value,
+                      },
+                    })
+                  }
                 >
                   {Array.from(
                     { length: 100 },
@@ -164,6 +236,10 @@ export default function ProfileE() {
                 id="gender"
                 required
                 className="w-1/7 px-3 py-2 border border-gray-700 bg-white text-black rounded-md"
+                value={formData.gender}
+                onChange={(e) =>
+                  setFormData({ ...formData, gender: e.target.value })
+                }
               >
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
@@ -186,6 +262,19 @@ export default function ProfileE() {
                     type="text"
                     className="w-2/3 block bg-white rounded border border-gray-700 focus:border-black focus:ring-2 focus:ring-black-900 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     placeholder={`${userProfile.profile.company.name}`}
+                    value={formData.profile.company.name}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        profile: {
+                          ...formData.profile,
+                          company: {
+                            ...formData.profile.company,
+                            name: e.target.value,
+                          },
+                        },
+                      })
+                    }
                   />
                 </div>
                 <div className="w-full flex flex-col mb-4">
@@ -199,6 +288,19 @@ export default function ProfileE() {
                     type="text"
                     className="w-2/3 block bg-white rounded border border-gray-700 focus:border-black focus:ring-2 focus:ring-black-900 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     placeholder={`${userProfile.profile.company.contactNumber}`}
+                    value={formData.profile.company.contactNumber}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        profile: {
+                          ...formData.profile,
+                          company: {
+                            ...formData.profile.company,
+                            contactNumber: e.target.value,
+                          },
+                        },
+                      })
+                    }
                   />
                 </div>
                 <div className="w-full flex flex-col mb-4">
@@ -212,6 +314,19 @@ export default function ProfileE() {
                     type="text"
                     className="w-2/3 block bg-white rounded border border-gray-700 focus:border-black focus:ring-2 focus:ring-black-900 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     placeholder={`${userProfile.profile.company.website}`}
+                    value={formData.profile.company.website}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        profile: {
+                          ...formData.profile,
+                          company: {
+                            ...formData.profile.company,
+                            website: e.target.value,
+                          },
+                        },
+                      })
+                    }
                   />
                 </div>
                 <div className="w-full flex flex-col mb-4">
@@ -225,6 +340,19 @@ export default function ProfileE() {
                     type="text"
                     className="w-2/3 h-40 block bg-white rounded border border-gray-700 focus:border-black focus:ring-2 focus:ring-black-900 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     placeholder={`${userProfile.profile.company.address}`}
+                    value={formData.profile.company.address}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        profile: {
+                          ...formData.profile,
+                          company: {
+                            ...formData.profile.company,
+                            address: e.target.value,
+                          },
+                        },
+                      })
+                    }
                   />
                 </div>
                 <div className="w-full flex flex-col mb-4">
@@ -238,6 +366,19 @@ export default function ProfileE() {
                     type="text"
                     className="w-2/3 h-40 block bg-white rounded border border-gray-700 focus:border-black focus:ring-2 focus:ring-black-900 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     placeholder={`${userProfile.profile.company.about}`}
+                    value={formData.profile.company.about}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        profile: {
+                          ...formData.profile,
+                          company: {
+                            ...formData.profile.company,
+                            about: e.target.value,
+                          },
+                        },
+                      })
+                    }
                   />
                 </div>
               </div>
@@ -250,7 +391,10 @@ export default function ProfileE() {
               >
                 Cancel changes
               </Link>
-              <button className="mb-4 px-4 py-2 bg-blue-500 text-white rounded">
+              <button
+                className="mb-4 px-4 py-2 bg-blue-500 text-white rounded"
+                onClick={handleSubmit}
+              >
                 Save changes
               </button>
             </div>

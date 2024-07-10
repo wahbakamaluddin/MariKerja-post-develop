@@ -22,7 +22,6 @@ const updateUserProfile = async (req, res) => {
     const { id } = req.params;
     const { firstname, lastname, gender, dateOfBirth, role, email, profile } =
       req.body;
-
     const user = await User.findById(id);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -56,9 +55,14 @@ const updateUserProfile = async (req, res) => {
         address: profile.company.address || user.profile.company.address,
         about: profile.company.about || user.profile.company.about,
       };
+      console.log("Debugging user profile update for employer:", {
+        incomingProfile: profile.company,
+        existingProfile: user.profile.company,
+      });
     }
-
+    console.log("Sent data:", req.body);
     await user.save();
+    console.log("user:", user);
 
     res.status(200).json(user);
   } catch (error) {
