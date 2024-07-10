@@ -94,7 +94,8 @@ export default function ActivityE() {
                         {job.status}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        {job.company}
+                        {job.applicants?.length || 0}{" "}
+                        {/* Display the number of applicants */}{" "}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <button
