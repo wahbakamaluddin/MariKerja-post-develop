@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function HomeJS() {
   const [jobs, setJobs] = useState([]); // State to hold fetched jobs
+  const [searchTerm, setSearchTerm] = useState(""); // State for the search term
 
   // Fetch jobs from backend
   useEffect(() => {
@@ -12,6 +13,15 @@ export default function HomeJS() {
       .then((data) => setJobs(data))
       .catch((error) => console.error("There was an error!", error));
   }, []); // Empty dependency array to run only once on component mount
+
+  // Filter jobs based on search term
+  const filteredJobs = jobs.filter(
+    (job) =>
+      job.jobname?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      job.state?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      job.status?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      job.company?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="flex h-screen bg-white">
@@ -22,6 +32,14 @@ export default function HomeJS() {
             <h2 className="flex text-2xl font-bold text-left mb-4">
               List of all jobs
             </h2>
+            {/* Search Bar */}
+            <input
+              type="text"
+              placeholder="Search for jobs..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="mb-4 px-4 py-2 border rounded"
+            />
             {/* Display Jobs Here */}
             <table className="table-auto text-left w-full">
               <thead>
@@ -34,7 +52,7 @@ export default function HomeJS() {
                 </tr>
               </thead>
               <tbody>
-                {jobs.map((job, index) => (
+                {filteredJobs.map((job, index) => (
                   <tr key={index}>
                     <td className="border px-4 py-2">{index + 1}</td>
                     <td className="border px-4 py-2">
