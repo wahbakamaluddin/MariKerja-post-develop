@@ -39,6 +39,7 @@ export default function ProfileE() {
                 {userProfile.firstname} {userProfile.lastname}
               </p>
             </div>
+
             <div className="w-full flex flex-col mb-4">
               <label
                 htmlFor="Email"
@@ -46,7 +47,7 @@ export default function ProfileE() {
               >
                 Email Address
               </label>
-              <p className="w-1/2 block  bg-white rounded border border-0.25 border-gray-400 text-black py-1 px-3">
+              <p className="w-full block bg-white rounded border border-0.25 border-gray-400 text-black py-1 px-3">
                 {userProfile.email}
               </p>
             </div>

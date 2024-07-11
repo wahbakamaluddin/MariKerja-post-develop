@@ -386,7 +386,7 @@ export default function EditProfileE() {
 
             <div className="flex gap-2">
               <Link
-                to="/profilee"
+                to="/profile"
                 className="mb-4 px-4 py-2 bg-blue-500 text-white rounded"
               >
                 Cancel changes
