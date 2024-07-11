@@ -177,6 +177,10 @@ const userSchema = new mongoose.Schema({
           type: String,
           default: "n/a",
         },
+        linkedin: {
+          type: String,
+          default: "n/a",
+        },
       },
       company: {
         name: {

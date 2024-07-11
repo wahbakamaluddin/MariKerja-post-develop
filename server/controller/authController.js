@@ -54,6 +54,7 @@ const registerUser = async (req, res) => {
           address: "n/a",
           about: "n/a",
           education: "n/a",
+          linkedin: "n/a",
         },
       };
     } else if (role === "job-seeker") {

@@ -244,9 +244,34 @@ export default function EditProfileJS() {
                 <option value="Female">Female</option>
               </select>
             </div>
-            {/* Render company information if user.role is employer */}
             <div>
               <h2 className="text-2xl font-bold text-left mb-4">Resume</h2>
+              <div className="w-full flex flex-col mb-4">
+                <label
+                  htmlFor="CompanyName"
+                  className="w-full justify-start block text-black font-medium mb-0"
+                >
+                  LinkedIn link
+                </label>
+                <input
+                  type="text"
+                  className="w-2/3 block bg-white rounded border border-gray-700 focus:border-black focus:ring-2 focus:ring-black-900 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  placeholder={`${userProfile.profile.resume.linkedin}`}
+                  value={formData.profile.resume.linkedin}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      profile: {
+                        ...formData.profile,
+                        resume: {
+                          ...formData.profile.resume,
+                          linkedin: e.target.value,
+                        },
+                      },
+                    })
+                  }
+                />
+              </div>
               <div className="w-full flex flex-col mb-4">
                 <label
                   htmlFor="CompanyName"
