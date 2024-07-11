@@ -43,7 +43,7 @@ export default function ActivityJS() {
                 <th className="px-6 py-2">No</th>
                 <th className="px-6 py-2">Title</th>
                 <th className="px-6 py-2">Place</th>
-                <th className="px-6 py-2">Company Name</th>
+                {/* <th className="px-6 py-2">Company Name</th> */}
                 <th className="px-6 py-2">Status</th>
                 <th className="px-6 py-2"> </th>
               </tr>
@@ -56,7 +56,7 @@ export default function ActivityJS() {
                     <Link to={`/jobs/${job._id}`}>{job.jobname}</Link>
                   </td>
                   <td className="border px-6 py-2">{job.address}</td>
-                  <td className="border px-6 py-2">{job.companyName}</td>
+                  {/* <td className="border px-6 py-2">{job.companyName}</td> */}
                   <td className="border px-6 py-2">
                     {job.applicants.map((applicant) => (
                       <div key={applicant._id}>

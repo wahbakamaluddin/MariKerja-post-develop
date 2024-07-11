@@ -48,7 +48,7 @@ export default function HomeE() {
                   <th className="px-4 py-2">Title</th>
                   <th className="px-4 py-2">Place</th>
                   <th className="px-4 py-2">Type</th>
-                  <th className="px-4 py-2">Company</th>
+                  {/* <th className="px-4 py-2">Company</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -60,7 +60,7 @@ export default function HomeE() {
                     </td>
                     <td className="border px-4 py-2">{job.state}</td>
                     <td className="border px-4 py-2">{job.status}</td>
-                    <td className="border px-4 py-2">{job.company}</td>
+                    {/* <td className="border px-4 py-2">{job.company}</td> */}
                   </tr>
                 ))}
               </tbody>

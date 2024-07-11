@@ -53,14 +53,14 @@ export default function JobDetail() {
           {" "}
           {/* Adjusted padding here */}
           <div className="mt-10">
-            <div className="mb-4">
+            {/* <div className="mb-4">
               <label className="block text-black font-medium mb-2">
                 Company Name
               </label>
               <p className="bg-white rounded border border-gray-400 text-black py-2 px-4">
                 {job.company}
               </p>
-            </div>
+            </div> */}
             <div className="mb-4">
               <label className="block text-black font-medium mb-2">
                 Job Description
