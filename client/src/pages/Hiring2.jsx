@@ -11,9 +11,7 @@ export default function Hiring2() {
   useEffect(() => {
     const fetchApplicantProfile = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8000/users/${applicantId}`
-        );
+        const response = await axios.get(`/users/${applicantId}`);
         setApplicantProfile(response.data);
       } catch (error) {
         console.error("There was an error!", error);
@@ -25,7 +23,7 @@ export default function Hiring2() {
 
   const handleApplicantStatus = (applicantName, applicantId, status) => {
     axios
-      .patch(`http://localhost:8000/jobs/${jobId}/applicants/${applicantId}`, {
+      .patch(`/jobs/${jobId}/applicants/${applicantId}`, {
         status,
       })
       .then((response) => {

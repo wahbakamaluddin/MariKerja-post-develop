@@ -16,7 +16,7 @@ export default function Hiring1() {
     const fetchJobDetails = async () => {
       try {
         console.log("fetching job details for job ID:", jobId);
-        const response = await axios.get(`http://localhost:8000/jobs/${jobId}`); // Adjust the URL as needed
+        const response = await axios.get(`/jobs/${jobId}`); // Adjust the URL as needed
         setJob(response.data);
       } catch (error) {
         console.error("There was an error!", error);
@@ -33,7 +33,7 @@ export default function Hiring1() {
           job.applicants.map(async (applicant) => {
             try {
               const response = await axios.get(
-                `http://localhost:8000/users/${applicant.applicantId}`
+                `/users/${applicant.applicantId}`
               );
               return {
                 applicantId: applicant.applicantId,
@@ -63,7 +63,7 @@ export default function Hiring1() {
 
   const handleApplicantStatus = (applicantName, applicantId, status) => {
     axios
-      .patch(`http://localhost:8000/jobs/${jobId}/applicants/${applicantId}`, {
+      .patch(`/jobs/${jobId}/applicants/${applicantId}`, {
         status,
       })
       .then((response) => {

@@ -1,17 +1,30 @@
 import { useState, useEffect } from "react";
 import TopNavEmpty from "../TopNavEmpty";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function HomeJS() {
   const [jobs, setJobs] = useState([]); // State to hold fetched jobs
   const [searchTerm, setSearchTerm] = useState(""); // State for the search term
 
-  // Fetch jobs from backend
+  // // Fetch jobs from backend
+  // useEffect(() => {
+  //   fetch("http://localhost:8000/jobs") // Adjust the URL as needed
+  //     .then((response) => response.json())
+  //     .then((data) => setJobs(data))
+  //     .catch((error) => console.error("There was an error!", error));
+  // }, []); // Empty dependency array to run only once on component mount
+
+  // Fetch jobs from backend using axios
   useEffect(() => {
-    fetch("http://localhost:8000/jobs") // Adjust the URL as needed
-      .then((response) => response.json())
-      .then((data) => setJobs(data))
-      .catch((error) => console.error("There was an error!", error));
+    axios
+      .get("/jobs")
+      .then((response) => {
+        setJobs(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
   }, []); // Empty dependency array to run only once on component mount
 
   // Filter jobs based on search term

@@ -13,7 +13,7 @@ export function UserContextProvider({ children }) {
         // Get user profile by sending a GET request to the /auth/profile endpoint
         // using the token stored in the browser's local storage as the authorization
         // header
-        .get("/auth/profile")
+        .get("/auth/profile", { withCredentials: true }) // Include the token in the Authorization header
         .then(({ data }) => {
           const user = data; // Rename the response data to user for readability
           setUser(user); // Set the user state to the user data
@@ -32,6 +32,37 @@ export function UserContextProvider({ children }) {
       setLoading(false);
     }
   }, [user]);
+
+  // useEffect(() => {
+  //   if (!user) {
+  //     // Retrieve the token from local storage
+  //     const token = localStorage.getItem("token");
+  //     console.log("Token:", token); // Debug: Check token value
+  //     axios
+  //       .get("/auth/profile", {
+  //         // Include the token in the Authorization header
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       })
+  //       .then(({ data }) => {
+  //         const user = data; // Rename the response data to user for readability
+  //         setUser(user); // Set the user state to the user data
+  //         console.log("User Type:", user.role, user.email, user.id);
+  //         setLoading(false); //
+  //       })
+  //       // If user is not found
+  //       .catch(() => {
+  //         console.log("catch block user not found");
+  //         setUser(null); // Set the user state to null
+  //         setLoading(false); // Set the loading state to false
+  //       });
+  //     // If the user state is not null (i.e., the user is already logged in)
+  //   } else {
+  //     console.log("else block user not null");
+  //     setLoading(false);
+  //   }
+  // }, [user]);
 
   return (
     // pass the role state to the value prop for the role-based access on the routes

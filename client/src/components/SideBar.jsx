@@ -11,7 +11,9 @@ export default function SideBar() {
     try {
       // Send a GET request to the /auth/logout endpoint to log out the user
       // It will clear the token stored in the browser's local storage
-      const response = await axios.get("/auth/logout");
+      const response = await axios.get("/auth/logout", {
+        withCredentials: true, // Include credentials in this case the cookie
+      });
       // Set the user state to null and redirect to the login page
       setUser(null);
       console.log(response.data.message);

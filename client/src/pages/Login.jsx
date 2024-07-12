@@ -18,10 +18,14 @@ export default function Login() {
     console.log("Attempting to log in with:", email, password); // Log the email and password being used to attempt login
 
     try {
-      const { data: responseData } = await axios.post("/auth/login", {
-        email,
-        password,
-      });
+      const { data: responseData } = await axios.post(
+        "/auth/login",
+        {
+          email,
+          password,
+        },
+        { withCredentials: true } // Include cookies and credentials with the request
+      );
       console.log("Login response data:", responseData); // Log the response data from the login attempt
 
       if (responseData.error) {

@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import axios from "axios";
 import TopNavEmpty from "../TopNavEmpty";
 import { UserContext } from "../../../context/UserContext";
 import { Link } from "react-router-dom";
@@ -7,10 +8,28 @@ export default function ActivityJS() {
   const [jobs, setJobs] = useState([]);
   const { user } = useContext(UserContext);
 
+  // useEffect(() => {
+  //   fetch("http://localhost:8000/jobs")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       // Assuming userId is available in the component (you need to fetch this from your authentication context or props)
+  //       const userId = user.id; // Replace with actual user ID
+
+  //       // Filter jobs where userId is in the applicants array
+  //       const filteredJobs = data.filter((job) =>
+  //         job.applicants.some((applicant) => applicant.applicantId === userId)
+  //       );
+
+  //       setJobs(filteredJobs);
+  //     })
+  //     .catch((error) => console.error("Error fetching jobs:", error));
+  // }, []);
+
   useEffect(() => {
-    fetch("http://localhost:8000/jobs")
-      .then((response) => response.json())
-      .then((data) => {
+    axios
+      .get("/jobs")
+      .then((response) => {
+        const data = response.data;
         // Assuming userId is available in the component (you need to fetch this from your authentication context or props)
         const userId = user.id; // Replace with actual user ID
 
@@ -21,7 +40,9 @@ export default function ActivityJS() {
 
         setJobs(filteredJobs);
       })
-      .catch((error) => console.error("Error fetching jobs:", error));
+      .catch((error) => {
+        console.error("Error fetching jobs:", error);
+      });
   }, []);
 
   // Function to delete a job application

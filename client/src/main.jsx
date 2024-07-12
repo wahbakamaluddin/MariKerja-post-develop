@@ -7,8 +7,9 @@ import "./index.css";
 import Router from "/router/Router.jsx";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:8000";
-axios.defaults.withCredentials = true;
+const baseURL = `http://${window.location.hostname}:8000`;
+
+axios.defaults.baseURL = baseURL;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
