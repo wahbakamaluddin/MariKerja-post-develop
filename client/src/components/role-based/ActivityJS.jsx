@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 import TopNavEmpty from "../TopNavEmpty";
 import { UserContext } from "../../../context/UserContext";
 import { Link } from "react-router-dom";
@@ -48,6 +49,7 @@ export default function ActivityJS() {
   // Function to delete a job application
   const deleteJobApplication = (jobId) => {
     setJobs(jobs.filter((job) => job._id !== jobId));
+    toast.success("Job application deleted successfully");
   };
 
   return (
