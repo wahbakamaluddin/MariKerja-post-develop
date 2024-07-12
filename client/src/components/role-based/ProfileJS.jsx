@@ -20,7 +20,7 @@ export default function ProfileE() {
   }
 
   return (
-    <div className="flex h-screen bg-white">
+    <div className="flex h-full bg-white">
       <TopNavEmpty title="Profile" />
       <div>
         <div className="flex-1 p-8 text-left  ">

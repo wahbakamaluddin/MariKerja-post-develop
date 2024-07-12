@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const TopNav = ({ title }) => {
   const navigate = useNavigate();
   return (
-    <div className="fixed w-full bg-white text-black sticky-top">
+    <div className="fixed w-full bg-gray-200 text-black sticky-top">
       <div className="flex justify-start gap-2 items-center px-8 py-4">
         <div onClick={() => navigate(-1)} className="cursor-pointer text-xl">
           <svg

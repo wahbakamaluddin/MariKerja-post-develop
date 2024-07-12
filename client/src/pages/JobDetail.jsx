@@ -45,7 +45,7 @@ export default function JobDetail() {
   };
 
   return (
-    <div className="flex h-screen bg-white">
+    <div className="flex h-full bg-white">
       <div className="flex-1">
         {/* Sticky Navigation Bar */}
         <TopNav title={job.jobname} />

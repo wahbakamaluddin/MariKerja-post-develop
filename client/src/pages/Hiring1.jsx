@@ -77,7 +77,7 @@ export default function Hiring1() {
   }
 
   return (
-    <div className="flex h-screen bg-white">
+    <div className="flex h-full bg-white">
       {/* Content */}
       <div>
         {/* Sticky Navigation Bar */}

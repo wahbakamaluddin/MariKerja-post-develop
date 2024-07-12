@@ -37,7 +37,7 @@ export default function Hiring2() {
   }
 
   return (
-    <div className="flex h-screen bg-white">
+    <div className="flex h-full bg-white">
       <div>
         <TopNav title="Jobseeker Details" />
         {/* User Information */}

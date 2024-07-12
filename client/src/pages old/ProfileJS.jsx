@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
-import TopNav from '../components/TopNav';
-import { Sidebar } from '../components/SideBar'; 
+import TopNav from "../components/TopNav";
+import { Sidebar } from "../components/SideBar";
 
 export default function ProfileJS() {
   const [showSidebar, setShowSidebar] = useState(true);
   useEffect(() => {
     const handleResize = () => {
       // Check screen width and toggle showSidebar accordingly
-      if (window.innerWidth <= 718) { // Adjust the breakpoint as needed
+      if (window.innerWidth <= 718) {
+        // Adjust the breakpoint as needed
         setShowSidebar(false);
       } else {
         setShowSidebar(true);
@@ -21,22 +22,26 @@ export default function ProfileJS() {
     return () => window.removeEventListener("resize", handleResize);
   }, []); // Empty dependency array to run only once on component mount
 
-
   return (
     <div className="flex h-screen bg-white">
       {/* Sidebar */}
       <Sidebar showSidebar={showSidebar} />
 
       {/* Content */}
-      <div className={`flex-1 ${showSidebar ? 'pl-64' : ''}`}>
+      <div className={`flex-1 ${showSidebar ? "pl-64" : ""}`}>
         {/* Sticky Navigation Bar */}
         <TopNav title="Profile" />
         {/* User Information */}
         <div className="flex-1 p-8 text-left  ">
           <div className="mb-10 mt-10">
             <div className="w-full flex flex-col mb-4">
-            <h2 className="text-2xl font-bold text-left mb-4">Personal Information</h2>
-              <label htmlFor="Name" className="w-full justify-start block text-black font-medium mb-0">
+              <h2 className="text-2xl font-bold text-left mb-4">
+                Personal Information
+              </h2>
+              <label
+                htmlFor="Name"
+                className="w-full justify-start block text-black font-medium mb-0"
+              >
                 Name
               </label>
               <a className="w-1/2 block  bg-white rounded border border-0.25 border-gray-400 text-black py-1 px-3">
@@ -44,7 +49,10 @@ export default function ProfileJS() {
               </a>
             </div>
             <div className="w-full flex flex-col mb-4">
-              <label htmlFor="Email" className="w-full justify-start block text-black font-medium mb-0">
+              <label
+                htmlFor="Email"
+                className="w-full justify-start block text-black font-medium mb-0"
+              >
                 Email Address
               </label>
               <a className="w-1/2 block  bg-white rounded border border-0.25 border-gray-400 text-black py-1 px-3">
@@ -52,7 +60,10 @@ export default function ProfileJS() {
               </a>
             </div>
             <div className="w-full flex gap-2 justify-start mb-4">
-              <label htmlFor="Date of birth" className="w-1/4 justify-start block text-black font-medium mb-0">
+              <label
+                htmlFor="Date of birth"
+                className="w-1/4 justify-start block text-black font-medium mb-0"
+              >
                 Date of Birth
               </label>
               <a className="w-20 block  bg-white rounded border border-0.25 border-gray-400 text-black py-1 px-3">
@@ -66,21 +77,29 @@ export default function ProfileJS() {
               </a>
             </div>
             <div className="w-full flex gap-2 justify-start mb-4">
-              <label htmlFor="Gender" className="w-1/4 justify-start block text-black font-medium mb-0">
+              <label
+                htmlFor="Gender"
+                className="w-1/4 justify-start block text-black font-medium mb-0"
+              >
                 Gender
               </label>
               <a className="w-20 block  bg-white rounded border border-0.25 border-gray-400 text-black py-1 px-3">
                 Male
               </a>
             </div>
-            <button className="mb-4 px-4 py-2 bg-blue-500 text-white rounded">Edit Profile</button>
+            <button className="mb-4 px-4 py-2 bg-blue-500 text-white rounded">
+              Edit Profile
+            </button>
           </div>
 
           {/* Resume Information */}
           <div className="mb-4">
             <h2 className="text-2xl font-bold text-left mb-4">Resume</h2>
             <div className="w-full flex flex-col mb-4">
-              <label htmlFor="FullName" className="w-full justify-start block text-black font-medium mb-0">
+              <label
+                htmlFor="FullName"
+                className="w-full justify-start block text-black font-medium mb-0"
+              >
                 Full Name
               </label>
               <a className="w-2/3 block  bg-white rounded border border-0.25 border-gray-400 text-black py-1 px-3">
@@ -88,49 +107,72 @@ export default function ProfileJS() {
               </a>
             </div>
             <div className="w-full flex flex-col mb-4">
-              <label htmlFor="ContactNumber" className="w-full justify-start block text-black font-medium mb-0">
+              <label
+                htmlFor="ContactNumber"
+                className="w-full justify-start block text-black font-medium mb-0"
+              >
                 Contact Number
               </label>
               <a className="w-2/3 block  bg-white rounded border border-0.25 border-gray-400 text-black py-1 px-3">
-              01234567890
+                01234567890
               </a>
             </div>
             <div className="w-full flex flex-col mb-4">
-              <label htmlFor="Address" className="w-full justify-start block text-black font-medium mb-0">
+              <label
+                htmlFor="Address"
+                className="w-full justify-start block text-black font-medium mb-0"
+              >
                 Address
               </label>
               <a className="w-2/3 block  bg-white rounded border border-0.25 border-gray-400 text-black py-1 px-3">
-                1234 Elm Street
-                Apt. 56B 
-                Springfield, IL 62704 
-                United States
+                1234 Elm Street Apt. 56B Springfield, IL 62704 United States
               </a>
             </div>
             <div className="w-full flex flex-col mb-4">
-              <label htmlFor="AboutMe" className="w-full justify-start block text-black font-medium mb-0">
+              <label
+                htmlFor="AboutMe"
+                className="w-full justify-start block text-black font-medium mb-0"
+              >
                 About Me
               </label>
               <a className="w-2/3 h-40 block bg-white rounded border border-0.25 border-gray-400 text-black py-1 px-3">
-              Employment status typically refers to whether a position is full-time or part-time. Full-time employees generally work between 35-40 hours per week and often receive benefits like health insurance, retirement plans, and paid time off.
+                Employment status typically refers to whether a position is
+                full-time or part-time. Full-time employees generally work
+                between 35-40 hours per week and often receive benefits like
+                health insurance, retirement plans, and paid time off.
               </a>
             </div>
             <div className="w-full flex flex-col mb-4">
-              <label htmlFor="Education" className="w-full justify-start block text-black font-medium mb-0">
+              <label
+                htmlFor="Education"
+                className="w-full justify-start block text-black font-medium mb-0"
+              >
                 Education
               </label>
               <a className="w-2/3 h-40 block  bg-white rounded border border-0.25 border-gray-400 text-black py-1 px-3">
-                Employment status typically refers to whether a position is full-time or part-time. Full-time employees generally work between 35-40 hours per week and often receive benefits like health insurance, retirement plans, and paid time off.
+                Employment status typically refers to whether a position is
+                full-time or part-time. Full-time employees generally work
+                between 35-40 hours per week and often receive benefits like
+                health insurance, retirement plans, and paid time off.
               </a>
             </div>
             <div className="w-full flex flex-col mb-4">
-              <label htmlFor="website" className="w-full justify-start block text-black font-medium mb-0">
+              <label
+                htmlFor="website"
+                className="w-full justify-start block text-black font-medium mb-0"
+              >
                 Persona Skill
               </label>
               <a className="w-2/3 h-40 block  bg-white rounded border border-0.25 border-gray-400 text-black py-1 px-3">
-                Employment status typically refers to whether a position is full-time or part-time. Full-time employees generally work between 35-40 hours per week and often receive benefits like health insurance, retirement plans, and paid time off.
+                Employment status typically refers to whether a position is
+                full-time or part-time. Full-time employees generally work
+                between 35-40 hours per week and often receive benefits like
+                health insurance, retirement plans, and paid time off.
               </a>
             </div>
-            <button className="mb-4 px-4 py-2 bg-blue-500 text-white rounded">Edit Resume</button>
+            <button className="mb-4 px-4 py-2 bg-blue-500 text-white rounded">
+              Edit Resume
+            </button>
           </div>
         </div>
       </div>
