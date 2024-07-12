@@ -117,7 +117,8 @@ const loginUser = async (req, res) => {
         }
         // Set token in cookie and respond with user data
         // httpOnly: true makes sure that the cookie is only accessible by the server
-        res.cookie("token", token, { httpOnly: true }).json(user);
+        console.log("authController.js - loginUser JWT sign Token:", token);
+        res.cookie("token", token, { httpOnly: false }).json(user);
       }
     );
   } catch (error) {
@@ -129,6 +130,7 @@ const loginUser = async (req, res) => {
 // Get Profile endpoint, called by UserContext.jsx to get user information
 const getProfile = (req, res) => {
   const token = req.cookies.token; // Retrieve token from cookie using req.cookies.token
+  console.log("authController-getProfile Token:", token); // Debug: Check token value
   if (!token) {
     return res.json(null); // If token is not found, respond with null, indicating that user is not logged in
   }
