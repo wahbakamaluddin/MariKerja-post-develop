@@ -38,7 +38,7 @@ To install and run MariKerja locally, follow these steps:
         ```
     - Client:
         ```bash
-        cd client && npm run dev
+        cd client && npm install
         ```
 4. Create a `.env` file in the `server` directory and add the following environment variables:
     - `MONGO_URL`: Your MongoDB connection URL
@@ -49,7 +49,7 @@ To install and run MariKerja locally, follow these steps:
     ```
 6. Start the client:
     ```bash
-    cd client && npm start
+    cd client && npm run dev
     ```
 7. Open your browser and visit `http://localhost:5173` to access MariKerja.
 
