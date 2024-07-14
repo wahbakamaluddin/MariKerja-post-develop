@@ -1,6 +1,6 @@
 # MariKerja
 
-MariKerja is a simple job listing web-based application built using the MERN stack (MongoDB, Express.js, React.js, and Node.js). Wacth demo at https://youtu.be/X2_fgEMJjGk
+MariKerja is a simple job listing web-based application built using the MERN stack (MongoDB, Express.js, React.js, and Node.js). Watch demo at https://youtu.be/X2_fgEMJjGk
 
 ## Table of Contents
 
